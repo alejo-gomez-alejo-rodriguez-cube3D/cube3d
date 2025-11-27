@@ -1,7 +1,7 @@
 NAME = cub3D
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 SRC_DIR = src
 OBJ_DIR = obj
@@ -11,7 +11,9 @@ PARSER_SRCS = src/parser/parse_file.c \
               src/parser/parse_colors.c \
               src/parser/parse_map.c \
               src/parser/validate_map.c \
-              src/parser/parser_utils.c
+              src/parser/parser_utils.c \
+			  gnl/get_next_line.c \
+			  gnl/get_next_line_utils.c \
 
 RENDER_SRCS = src/render/render.c \
               src/render/render_utils.c
