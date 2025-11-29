@@ -6,11 +6,12 @@
 /*   By: alejagom <alejagom@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 17:16:25 by alejandro         #+#    #+#             */
-/*   Updated: 2025/11/27 21:17:53 by alejagom         ###   ########.fr       */
+/*   Updated: 2025/11/29 17:54:35 by alejagom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+#include "../includes/render.h"
 
 // static void	parser_provitional(char **args, t_data *data)
 // {
@@ -44,7 +45,7 @@
 // 	}
 // 	close(fd);
 // }
-static int parser_provisional(char **args, t_data *data)
+static int parser_provisional(char **args, t_map *data)
 {
     int fd;
     char *line = NULL;
@@ -90,17 +91,18 @@ static int parser_provisional(char **args, t_data *data)
 
 int main(int ac, char **args)
 {
-	t_data	data;
+	t_game	g;
 
 	if (ac != 2)
 		return (1);
-	if (parser_provisional(args, &data))
+	if (parser_provisional(args, &g.map))
 		return (1);
-	int i = 0;
-	while (data.map[i] != NULL)
-	{
-		printf("%s\n", data.map[i]);
-		i++;
-	}
+	init_struct(&g);
+	// int i = 0;
+	// while (g.map.map[i] != NULL)
+	// {
+	// 	printf("%s\n", g.map.map[i]);
+	// 	i++;
+	// }
 	return (0);
 }
