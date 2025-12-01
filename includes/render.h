@@ -3,6 +3,6 @@
 
 #include "cub3d.h"
 
-void		init_grapics(t_game *g);
+int    init_structs(t_game *g);
 
 #endif

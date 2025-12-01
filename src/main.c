@@ -6,7 +6,7 @@
 /*   By: alejagom <alejagom@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 17:16:25 by alejandro         #+#    #+#             */
-/*   Updated: 2025/11/29 17:54:35 by alejagom         ###   ########.fr       */
+/*   Updated: 2025/12/01 18:00:15 by alejagom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,8 @@ int main(int ac, char **args)
 		return (1);
 	if (parser_provisional(args, &g.map))
 		return (1);
-	init_struct(&g);
+	if (init_structs(&g))
+        return (1);
 	// int i = 0;
 	// while (g.map.map[i] != NULL)
 	// {
