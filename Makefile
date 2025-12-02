@@ -6,6 +6,10 @@ CFLAGS = -Wall -Wextra -Werror
 SRC_DIR = src
 OBJ_DIR = obj
 
+MLX_DIR = minilibx-linux
+MLX = $(MLX_DIR)/libmlx_linux.a
+MLX_FLAGS = -L$(MLX_DIR) - lmlx_linux -lX11 lXext -lm
+
 PARSER_SRCS = src/parser/parse_file.c \
               src/parser/parse_textures.c \
               src/parser/parse_colors.c \
@@ -32,6 +36,10 @@ SRCS = $(MAIN_SRC) $(PARSER_SRCS) $(RENDER_SRCS) $(RAYCAST_SRCS) $(UTILS_SRCS)
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
+
+$(MLX):
+	@echo "$(COLOR_CLEAN)
+	@$(MAKE) -s -C $(MLX_DIR) > /dev/null 2>&1
 
 $(NAME): $(OBJS)
 	@echo "🔗 Enlazando $(NAME)..."
