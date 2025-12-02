@@ -6,7 +6,7 @@
 #    By: alejaro2 <alejaro2@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 09:37:54 by alejaro2          #+#    #+#              #
-#    Updated: 2025/03/21 11:03:28 by alejaro2         ###   ########.fr        #
+#    Updated: 2025/12/02 15:11:46 by alejaro2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,10 +26,6 @@ SRC = \
 	src/ft_putendl_fd.c src/ft_strlcat.c src/ft_memset.c src/ft_toupper.c \
 	src/ft_tolower.c src/ft_split.c
 
-SRC += \
-	ft_printf/src/ft_printf.c ft_printf/src/ft_print_char.c \
-	ft_printf/src/ft_print_hexadecimal.c ft_printf/src/ft_print_num.c \
-	ft_printf/src/ft_print_pointer.c ft_printf/src/ft_print_str.c
 
 SRC += \
 	get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
@@ -38,11 +34,11 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ) include/libft.h ft_printf/include/ft_printf.h
+$(NAME): $(OBJ)
 	$(AR) $(NAME) $(OBJ)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -Iinclude -Ift_printf/include -o $@ $< -c
+	$(CC) $(CFLAGS) -Iinclude -Iget_next_line -o $@ $< -c
 
 clean:
 	rm -f $(OBJ)

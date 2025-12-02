@@ -2,7 +2,14 @@
 # define CUB3D_H
 
 # include <fcntl.h>
-# include "get_next_line.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+
+
+# include "../libs/libft/include/libft.h" 
+
+# include "parser.h"
 
 //imagen en el MLX
 typedef struct	s_img
