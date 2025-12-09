@@ -54,7 +54,7 @@ $(LIBFT):
 # 2. Regla para compilar MiniLibX
 $(MLX):
 	@echo "🎮 Compilando MiniLibX..."
-	@make -C $(MLX_DIR)
+	-@make -C $(MLX_DIR)
 
 # 3. Regla principal
 $(NAME): $(LIBFT) $(MLX) $(OBJS)

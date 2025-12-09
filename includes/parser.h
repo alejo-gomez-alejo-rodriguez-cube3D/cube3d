@@ -1,8 +1,12 @@
 #ifndef PARSER_H
 # define PARSER_H
 
-struct s_game; 
+int		parse_file(char *file_path, t_game *game);
+char	*skip_spaces(char *line);
+int		is_empty_line(char *line);
+int		print_error(char *msg);
 
-int	parse_file(char *file_path, struct s_game *game);
+int		parse_texture(char *line, t_tex *tex, char *type);
 
+int		parse_color(char *line, t_game *game, char type);
 #endif
