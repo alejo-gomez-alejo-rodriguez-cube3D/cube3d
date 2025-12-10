@@ -17,10 +17,10 @@ static int	parse_config(char *ptr, t_game *game)
 	else if (ft_strncmp(ptr, "SP ", 3) == 0)
 		return (parse_texture(ptr, &game->config.tex_sprite, "SP"));
 
-	// else if (ft_strncmp(ptr, "F ", 2) == 0)
-	// 	return (parse_color(ptr, game, 'F'));
-	// else if (ft_strncmp(ptr, "C ", 2) == 0)
-	// 	return (parse_color(ptr, game, 'C'));
+	else if (ft_strncmp(ptr, "F ", 2) == 0)
+		return (parse_color(ptr, game, 'F'));
+	else if (ft_strncmp(ptr, "C ", 2) == 0)
+		return (parse_color(ptr, game, 'C'));
 
 	return (-1);
 }
@@ -43,10 +43,7 @@ static int	parse_line(char *line, t_game *game)
 		return (1);
 	
 	if (*ptr == '1' || *ptr == '0')
-	{
-		printf("map line\n");
-		return (0); 
-	}
+		return (parse_map_line(line, game));
 
 	return (print_error("Unknown line"));
 }

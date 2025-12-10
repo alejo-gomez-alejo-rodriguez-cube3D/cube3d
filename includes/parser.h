@@ -9,4 +9,6 @@ int		print_error(char *msg);
 int		parse_texture(char *line, t_tex *tex, char *type);
 
 int		parse_color(char *line, t_game *game, char type);
+
+int     parse_map_line(char *line, t_game *game);
 #endif

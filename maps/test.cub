@@ -1,6 +1,12 @@
+NO ./textures/north_wall.xpm
+SO      ./textures/south_wall.xpm
+WE ./textures/west_wall.xpm
+EA ./textures/east_wall.xpm
 
+F    220,100,0
+C 225,30,0
 
-111111111111111111111
-111111111100000100011
-101010101011111110001
-100010100010000010001
+111111
+100001
+100101
+111111
