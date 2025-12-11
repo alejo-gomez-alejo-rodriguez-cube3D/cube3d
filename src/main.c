@@ -25,6 +25,5 @@ int	main(int argc, char **argv)
 	if (validate_map(&game) != 0)
 		return (1);
 	
-	debug_print_game(&game);
 	return (0);
 }
