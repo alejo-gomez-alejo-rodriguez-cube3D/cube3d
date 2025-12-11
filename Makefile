@@ -19,7 +19,8 @@ PARSER_SRCS = src/parser/parse_file.c \
               src/parser/parse_colors.c \
               src/parser/parse_map.c \
               src/parser/validate_map.c \
-              src/parser/parser_utils.c
+              src/parser/parser_utils.c \
+			  src/parser/map_utils.c
 
 RENDER_SRCS = src/render/render.c \
               src/render/render_utils.c
