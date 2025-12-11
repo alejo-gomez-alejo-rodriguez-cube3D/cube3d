@@ -2,6 +2,7 @@
 # define CUB3D_H
 
 # include "../libs/libft/include/libft.h"
+# include "../minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -85,4 +86,5 @@ typedef struct s_game
 }			t_game;
 
 # include "parser.h"
+# include "render.h"
 #endif
