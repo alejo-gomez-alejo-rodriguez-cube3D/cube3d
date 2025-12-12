@@ -79,7 +79,7 @@ typedef struct s_game
 	t_map map;         // matriz del mapa
 	t_config config;   // texturas y colores
 	int win_w;         // nchura de la ventana
-	int wind_h;        // altura de la ventana
+	int win_h;        // altura de la ventana
 	double move_speed; // velocidad de movimiento (units/sec)
 	double rot_speed;  // velocidad de rotacion (rad/sec)
 	int runnig;        // flag para el loop 1 = running 0 = salir
