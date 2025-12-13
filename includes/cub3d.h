@@ -28,7 +28,7 @@ typedef struct s_tex
 	char	*path;
 	int		width;
 	int		height;
-	int		bit_pp;
+	int		bit_pp; //bits por pixel
 	int		line_len;
 	int		endian;
 }			t_tex;
@@ -84,6 +84,10 @@ typedef struct s_game
 	double rot_speed;  // velocidad de rotacion (rad/sec)
 	int runnig;        // flag para el loop 1 = running 0 = salir
 }			t_game;
+
+
+//free mem
+int	destroy_game(t_game *g);
 
 # include "parser.h"
 # include "render.h"

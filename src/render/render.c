@@ -12,51 +12,6 @@
 
 #include "./includes/cub3d.h"
 
-// static int	img_init(t_img *mlx)
-// {
-// 	mlx->addr = NULL;
-// 	mlx->bit_pp = 0;
-// 	mlx->endian = 0;
-// 	mlx->height = 0;
-// 	mlx->img_mlx = NULL;
-// 	mlx->line_len = 0;
-// 	mlx->width = 0;
-// 	return (0);
-// }
-
-// static int	player_init(t_player *player)
-// {
-// 	player->dir_char = NULL;
-// 	player->dir_x = 0;
-// 	player->dir_y = 0;
-// 	player->plane_x = 0;
-// 	player->plane_y = 0;
-// 	player->x = 0;
-// 	player->y = 0;
-// 	return (0);
-// }
-
-// static int	init_tex(t_tex *tex)
-// {
-// 	tex->addr = NULL;
-// 	tex->bit_pp = 0;
-// 	tex->endian = 0;
-// 	tex->height = 0;
-// 	tex->img_mlx = NULL;
-// 	tex->line_len = 0;
-// 	tex->width = 0;
-// 	return (0);
-// }
-
-// static int	config_init(t_config *config)
-// {
-// 	config->color_ceiling = 0;
-// 	config->color_floor = 0;
-// 	if (init_tex(&config->tex_east) || init_tex(&config->tex_north)
-// 		|| init_tex(&config->tex_south) || init_tex(&config->tex_west))
-// 		return (1);
-// 	return (0);
-// }
 int	init_mlx(t_game *game)
 {
 	game->img_mlx = mlx_init();
@@ -78,10 +33,13 @@ int	init_mlx(t_game *game)
 
 int	load_texture(t_game *g, t_tex *tex)
 {
+	if (!tex->path)
+		return (print_error("Texture path NULL"), 1);
 	tex->img_mlx = mlx_xpm_file_to_image(g->img_mlx, tex->path, &tex->width, &tex->height);
+	printf("numero: %d %d\n", tex->height, tex->width);
 	if (!tex->img_mlx)
 		return (print_error("Error loading texture"));
-	tex->addr = mlx_get_data_addr(tex->addr, &tex->bit_pp, &tex->line_len, &tex->endian);
+	tex->addr = mlx_get_data_addr(tex->img_mlx, &tex->bit_pp, &tex->line_len, &tex->endian);
 	return (0);
 }
 // check the images
@@ -93,7 +51,7 @@ int	load_all_textures(t_game *g)
 		return (1);
 	if (load_texture(g, &g->config.tex_south))
 		return (1);
-	if (load_texture(g, &g->config.tex_south))
+	if (load_texture(g, &g->config.tex_west))
 		return (1);
 	return (0);
 }
@@ -107,7 +65,9 @@ void	set_hook(t_game *game)
 int	game_loop(t_game *g)
 {
 	if (g->runnig == 0)
-		mlx_loop(g->img_mlx);
+		return (0);
+	//prueba de textura temporal
+	blit_texture_center(g, &g->config.tex_north);
 	mlx_put_image_to_window(g->img_mlx, g->window, g->screen.img_mlx, 0, 0);
 	return (0);
 }

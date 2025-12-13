@@ -15,12 +15,12 @@
 int	key_press(int keycode, t_game *g)
 {
 	if (keycode == 65307)
-		g->runnig = 0;
+		destroy_game(g);
 	return (0);
 }
 
 int	close_window(t_game *g)
 {
-	g->runnig = 0;
+	destroy_game(g);
 	return (0);
 }

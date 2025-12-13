@@ -1,6 +1,40 @@
 #include "../includes/cub3d.h"
-#include "../includes/render.h"
 
+// poner despues del mergeo.
+// void init_player(t_player *p)
+// {
+//     if (!p->dir_char)
+//         return;
+
+//     if (*p->dir_char == 'N')
+//     {
+//         p->dir_x = 0;
+//         p->dir_y = -1;
+//         p->plane_x = 0.66;
+//         p->plane_y = 0;
+//     }
+//     else if (*p->dir_char == 'S')
+//     {
+//         p->dir_x = 0;
+//         p->dir_y = 1;
+//         p->plane_x = -0.66;
+//         p->plane_y = 0;
+//     }
+//     else if (*p->dir_char == 'E')
+//     {
+//         p->dir_x = 1;
+//         p->dir_y = 0;
+//         p->plane_x = 0;
+//         p->plane_y = 0.66;
+//     }
+//     else if (*p->dir_char == 'W')
+//     {
+//         p->dir_x = -1;
+//         p->dir_y = 0;
+//         p->plane_x = 0;
+//         p->plane_y = -0.66;
+//     }
+// }
 
 int	check_extension(char *file)
 {
@@ -8,6 +42,31 @@ int	check_extension(char *file)
 
 	len = ft_strlen(file);
 	if (len < 4 || ft_strncmp(file + len - 4, ".cub", 4) != 0)
+		return (1);
+	return (0);
+}
+
+//organizar en carpeta.
+static void init_constants(t_game *g)
+{
+    g->win_w = 800;
+    g->win_h = 800;
+
+    g->move_speed = 0.05;
+    g->rot_speed = 0.03;
+
+    g->runnig = 1;
+
+    g->config.is_floor_set = 0;
+    g->config.is_ceil_set = 0;
+}
+//organizar en carpeta
+int	init_game(t_game *g)
+{
+	init_constants(g);
+	if (init_mlx(g))
+		return (1);
+	if (load_all_textures(g))
 		return (1);
 	return (0);
 }
@@ -23,11 +82,8 @@ int	main(int argc, char **argv)
 	ft_memset(&game, 0, sizeof(t_game));
 	if (parse_file(argv[1], &game) != 0)
 		return (1);
-	// if(init_structs(&game)) //borrar
-	// 	return (1);
-	if (init_mlx(&game))
-		return (1);
-	if (load_all_textures(&game))
+	//init_player despues del mergeo.
+	if (init_game(&game))
 		return (1);
 	set_hook(&game);
 	game.runnig = 1;
