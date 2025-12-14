@@ -46,31 +46,6 @@ int	check_extension(char *file)
 	return (0);
 }
 
-//organizar en carpeta.
-static void init_constants(t_game *g)
-{
-    g->win_w = 800;
-    g->win_h = 800;
-
-    g->move_speed = 0.05;
-    g->rot_speed = 0.03;
-
-    g->runnig = 1;
-
-    g->config.is_floor_set = 0;
-    g->config.is_ceil_set = 0;
-}
-//organizar en carpeta
-int	init_game(t_game *g)
-{
-	init_constants(g);
-	if (init_mlx(g))
-		return (1);
-	if (load_all_textures(g))
-		return (1);
-	return (0);
-}
-
 int	main(int argc, char **argv)
 {
 	t_game	game;

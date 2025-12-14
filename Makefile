@@ -24,6 +24,8 @@ PARSER_SRCS = src/parser/parse_file.c \
 RENDER_SRCS = src/render/render.c \
               src/render/render_utils.c \
 			  src/render/buttons.c \
+			  src/render/hooks.c \
+			  src/render/load_textures.c \
 
 RAYCAST_SRCS = src/raycasting/raycasting.c \
                src/raycasting/raycasting_utils.c
