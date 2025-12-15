@@ -5,6 +5,13 @@
 
 typedef struct s_game t_game;
 
+//raycasting
+void	raycast_scene(t_game *g);
+void	init_ray(t_game *g, t_ray *r, int x);
+void perform_dda(t_game *g, t_ray *r);
+void compute_wall(t_game *g, t_ray *r);
+void draw_column(t_game *g, t_ray *r, int x);
+
 //renders
 int	init_mlx(t_game *game);
 int	game_loop(t_game *g);

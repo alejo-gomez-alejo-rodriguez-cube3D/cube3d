@@ -60,7 +60,8 @@ int	game_loop(t_game *g)
 	if (g->runnig == 0)
 		return (0);
 	// prueba de textura temporal
-	blit_texture_center(g, &g->config.tex_north);
+	// blit_texture_center(g, &g->config.tex_north);
+	raycast_scene(g);
 	mlx_put_image_to_window(g->img_mlx, g->window, g->screen.img_mlx, 0, 0);
 	return (0);
 }
