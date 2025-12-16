@@ -72,5 +72,7 @@ int	validate_map(t_game *game)
 		return (1);
     if (make_map_rectangular(game) != 0)
 		return (1);
+	if (check_walls(game) != 0)
+        return (1);
 	return (0);
 }
