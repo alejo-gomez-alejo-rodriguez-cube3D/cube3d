@@ -1,109 +1,29 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: alejagom <alejagom@student.42madrid.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/27 17:16:25 by alejandro         #+#    #+#             */
-/*   Updated: 2025/12/01 18:00:15 by alejagom         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../includes/cub3d.h"
 #include "../includes/render.h"
 
-// static void	parser_provitional(char **args, t_data *data)
-// {
-// 	int	fd;
-// 	int	len;
-// 	int	line_len;
-// 	char	*line;
-// 	char	**map;
-
-// 	len = 0;
-// 	line_len = 0;
-// 	fd = open(args[1], O_RDONLY);
-// 	if (fd < 0)
-// 		return ;
-// 	line = get_next_line(fd);
-// 	if (!line)
-// 		return ;
-// 	data->map = malloc(sizeof(char **) * 40);
-// 	if (!data->map)
-// 		return ;
-// 	while ((line = get_next_line(fd)) != NULL)
-// 	{
-// 		line_len = ft_strlen(line);
-// 		data->map[len] == malloc(sizeof(char) * line_len + 1);
-// 		if (!data->map[len])
-// 			return ;
-// 		data->map[len] = ft_strdup(line);
-// 		data->map[len][line_len + 1] = '\0';
-// 		len++;
-// 		free(line);
-// 	}
-// 	close(fd);
-// }
-static int parser_provisional(char **args, t_map *data)
+int	check_extension(char *file)
 {
-    int fd;
-    char *line = NULL;
-    char **map = NULL;
-    size_t count = 0;
+	size_t	len;
 
-    if (!args || !args[1] || !data) return -1;
-    fd = open(args[1], O_RDONLY);
-    if (fd < 0) return -1;
-
-    while ((line = get_next_line(fd)) != NULL)
-    {
-        /* quitar '\n' si existe */
-        size_t l = ft_strlen(line);
-        if (l > 0 && line[l - 1] == '\n')
-            line[l - 1] = '\0';
-
-        /* realloc para crecer el array de punteros */
-        char **tmp = realloc(map, sizeof *map * (count + 2)); /* +1 para la nueva, +1 para NULL */
-        if (!tmp) { free(line); /* liberar map parcial */ /* liberar map[i] */ close(fd); return -1; }
-        map = tmp;
-
-        map[count] = ft_strdup(line);
-        if (!map[count]) { free(line); /* liberar map parcial */ close(fd); return -1; }
-
-        count++;
-        map[count] = NULL; /* mantener siempre NULL-terminated */
-        free(line);
-    }
-
-    close(fd);
-
-    if (!map) {
-        /* fichero vacío -> crear array con solo NULL */
-        map = malloc(sizeof *map);
-        if (!map) return -1;
-        map[0] = NULL;
-    }
-
-    data->map = map;
-    return 0;
+	len = ft_strlen(file);
+	if (len < 4 || ft_strncmp(file + len - 4, ".cub", 4) != 0)
+		return (1);
+	return (0);
 }
 
-int main(int ac, char **args)
+int	main(int argc, char **argv)
 {
-	t_game	g;
+	t_game	game;
 
-	if (ac != 2)
+	if (argc != 2)
+		return (print_error("Usage: ./cub3D <map.cub>"));
+	if (check_extension(argv[1]))
+		return (print_error("File must have .cub extension"));
+	ft_memset(&game, 0, sizeof(t_game));
+	if (parse_file(argv[1], &game) != 0)
 		return (1);
-	if (parser_provisional(args, &g.map))
+	if (validate_map(&game) != 0)
 		return (1);
-	if (init_structs(&g))
-        return (1);
-	// int i = 0;
-	// while (g.map.map[i] != NULL)
-	// {
-	// 	printf("%s\n", g.map.map[i]);
-	// 	i++;
-	// }
+	
 	return (0);
 }
