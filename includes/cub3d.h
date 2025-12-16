@@ -2,10 +2,42 @@
 # define CUB3D_H
 
 # include "../libs/libft/include/libft.h"
+# include "../minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <math.h>
+
+// struct raycasting
+
+typedef struct s_ray
+{
+    double camera_x;
+    double ray_dir_x;
+    double ray_dir_y;
+
+    int map_x;
+    int map_y;
+
+    double side_dist_x;
+    double side_dist_y;
+
+    double delta_dist_x;
+    double delta_dist_y;
+
+    int step_x;
+    int step_y;
+
+    int hit;
+    int side;
+
+    double perp_wall_dist;
+
+    int line_height;
+    int draw_start;
+    int draw_end;
+} t_ray;
 
 // imagen en el MLX
 typedef struct s_img
@@ -27,7 +59,7 @@ typedef struct s_tex
 	char	*path;
 	int		width;
 	int		height;
-	int		bit_pp;
+	int		bit_pp; //bits por pixel
 	int		line_len;
 	int		endian;
 }			t_tex;
@@ -78,11 +110,16 @@ typedef struct s_game
 	t_map map;         // matriz del mapa
 	t_config config;   // texturas y colores
 	int win_w;         // nchura de la ventana
-	int wind_h;        // altura de la ventana
+	int win_h;        // altura de la ventana
 	double move_speed; // velocidad de movimiento (units/sec)
 	double rot_speed;  // velocidad de rotacion (rad/sec)
 	int runnig;        // flag para el loop 1 = running 0 = salir
 }			t_game;
 
+
+//free mem
+int	destroy_game(t_game *g);
+
 # include "parser.h"
+# include "render.h"
 #endif
