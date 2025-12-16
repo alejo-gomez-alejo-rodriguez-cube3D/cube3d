@@ -8,9 +8,21 @@ typedef struct s_game t_game;
 //raycasting
 void	raycast_scene(t_game *g);
 void	init_ray(t_game *g, t_ray *r, int x);
-void perform_dda(t_game *g, t_ray *r);
-void compute_wall(t_game *g, t_ray *r);
 void draw_column(t_game *g, t_ray *r, int x);
+t_tex *select_wall_texture(t_game *g, t_ray *r);
+void compute_tex_x(t_game *g, t_ray *r, t_tex *tex);
+
+//dda_utils
+void perform_dda(t_game *g, t_ray *r);
+void dda_loop(t_game *g, t_ray *r);
+void init_dda_y(t_game *g, t_ray *r);
+void init_dda_x(t_game *g, t_ray *r);
+
+//compute
+void compute_wall(t_game *g, t_ray *r);
+void compute_draw_limits(t_game *g, t_ray *r);
+void compute_line_height(t_game *g, t_ray *r);
+void compute_perp_dist(t_ray *r);
 
 //renders
 int	init_mlx(t_game *game);

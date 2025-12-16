@@ -37,6 +37,9 @@ typedef struct s_ray
     int line_height;
     int draw_start;
     int draw_end;
+	
+    int tex_x;
+    int tex_y;
 } t_ray;
 
 // imagen en el MLX

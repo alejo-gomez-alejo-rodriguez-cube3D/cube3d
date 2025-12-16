@@ -29,11 +29,13 @@ RENDER_SRCS = src/render/render.c \
 			  src/render/load_textures.c \
 
 RAYCAST_SRCS = src/raycasting/raycasting.c \
-               src/raycasting/raycasting_utils.c
+               src/raycasting/raycasting_utils.c \
+               src/raycasting/compute_ray.c \
+               src/raycasting/dda.c \
 
 UTILS_SRCS  = src/utils/error.c \
               src/utils/free.c \
-              src/utils/utils.c
+              src/utils/utils.c \
 
 MAIN_SRC    = src/main.c
 

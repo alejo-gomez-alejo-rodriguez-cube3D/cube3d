@@ -1,40 +1,40 @@
 #include "../includes/cub3d.h"
 
 // poner despues del mergeo.
-// void init_player(t_player *p)
-// {
-//     if (!p->dir_char)
-//         return;
+static void init_player(t_player *p)
+{
+    if (!p->dir_char)
+        return;
 
-//     if (*p->dir_char == 'N')
-//     {
-//         p->dir_x = 0;
-//         p->dir_y = -1;
-//         p->plane_x = 0.66;
-//         p->plane_y = 0;
-//     }
-//     else if (*p->dir_char == 'S')
-//     {
-//         p->dir_x = 0;
-//         p->dir_y = 1;
-//         p->plane_x = -0.66;
-//         p->plane_y = 0;
-//     }
-//     else if (*p->dir_char == 'E')
-//     {
-//         p->dir_x = 1;
-//         p->dir_y = 0;
-//         p->plane_x = 0;
-//         p->plane_y = 0.66;
-//     }
-//     else if (*p->dir_char == 'W')
-//     {
-//         p->dir_x = -1;
-//         p->dir_y = 0;
-//         p->plane_x = 0;
-//         p->plane_y = -0.66;
-//     }
-// }
+    if (p->dir_char == 'N')
+    {
+        p->dir_x = 0;
+        p->dir_y = -1;
+        p->plane_x = 0.66;
+        p->plane_y = 0;
+    }
+    else if (p->dir_char == 'S')
+    {
+        p->dir_x = 0;
+        p->dir_y = 1;
+        p->plane_x = -0.66;
+        p->plane_y = 0;
+    }
+    else if (p->dir_char == 'E')
+    {
+        p->dir_x = 1;
+        p->dir_y = 0;
+        p->plane_x = 0;
+        p->plane_y = 0.66;
+    }
+    else if (p->dir_char == 'W')
+    {
+        p->dir_x = -1;
+        p->dir_y = 0;
+        p->plane_x = 0;
+        p->plane_y = -0.66;
+    }
+}
 
 int	check_extension(char *file)
 {
@@ -59,8 +59,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (validate_map(&game) != 0)
 		return (1);
-	
-	//init_player despues del mergeo.
+	init_player(&game.player);
 	if (init_game(&game))
 		return (1);
 	set_hook(&game);
