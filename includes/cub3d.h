@@ -73,7 +73,7 @@ typedef struct s_player
 	double dir_y;   // vector direccion y (unitario)
 	double plane_x; // plano de la camara x (para FOV)
 	double plane_y; // plano de la camara y
-	char *dir_char; //'N', 'S', 'E', 'W' direccion inicial desde el parser
+	char  dir_char; //'N', 'S', 'E', 'W' direccion inicial desde el parser
 }			t_player;
 
 // información del mapa

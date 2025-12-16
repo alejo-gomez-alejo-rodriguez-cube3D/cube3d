@@ -57,6 +57,9 @@ int	main(int argc, char **argv)
 	ft_memset(&game, 0, sizeof(t_game));
 	if (parse_file(argv[1], &game) != 0)
 		return (1);
+	if (validate_map(&game) != 0)
+		return (1);
+	
 	//init_player despues del mergeo.
 	if (init_game(&game))
 		return (1);
