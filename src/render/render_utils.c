@@ -12,26 +12,29 @@
 
 #include "./includes/cub3d.h"
 
-// textura temporal, reemplazar por el raycasting
-void	blit_texture_center(t_game *g, t_tex *tex)
+// perspectiva del jugador
+void	init_player(t_player *p)
 {
-	int				start_x;
-	int				start_y;
-	unsigned int	color;
+	int					i;
+	const t_dir_init	dirs[4] = {{'N', 0.0, -1.0, 0.50, 0.0},
+	{'S', 0.0, 1.0, -0.50, 0.0}, {'E', 1.0, 0.0, 0.0, 0.50},
+	{'W', -1.0, 0.0, 0.0, -0.50}};
 
-	start_x = (g->win_w - tex->width) / 2;
-	start_y = (g->win_h - tex->height) / 2;
-	for (int y = 0; y < tex->height; ++y)
+	i = 0;
+	while (i < 4)
 	{
-		for (int x = 0; x < tex->width; ++x)
+		if (p->dir_char == dirs[i].dir)
 		{
-			color = get_tex_pixel(tex, x, y);
-			put_pixel(&g->screen, start_x + x, start_y + y, color);
+			p->dir_x = dirs[i].dir_x;
+			p->dir_y = dirs[i].dir_y;
+			p->plane_x = dirs[i].plane_x;
+			p->plane_y = dirs[i].plane_y;
+			return ;
 		}
+		i++;
 	}
 }
 
-// se remplaza por el raycasting
 void	put_pixel(t_img *img, int x, int y, int color)
 {
 	char	*dst;
@@ -42,7 +45,6 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-// se remplaza por el raycasting
 unsigned int	get_tex_pixel(t_tex *tx, int x, int y)
 {
 	char	*dst;

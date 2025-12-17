@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alejandro <marvin@42.fr>                   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/17 19:04:24 by alejandro         #+#    #+#             */
+/*   Updated: 2025/12/17 19:04:27 by alejandro        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -37,6 +49,9 @@ typedef struct s_ray
     int line_height;
     int draw_start;
     int draw_end;
+	
+    int tex_x;
+    int tex_y;
 } t_ray;
 
 // imagen en el MLX
@@ -63,6 +78,16 @@ typedef struct s_tex
 	int		line_len;
 	int		endian;
 }			t_tex;
+
+// perspectiva del jugador
+typedef struct s_dir_init
+{
+    char    dir;
+    double  dir_x;
+    double  dir_y;
+    double  plane_x;
+    double  plane_y;
+}   t_dir_init;
 
 // información del jugador
 typedef struct s_player
@@ -94,7 +119,7 @@ typedef struct s_config
 	t_tex	tex_door;
 	t_tex	tex_sprite;
 	int color_floor;   // color suelo
-	int color_ceiling; // color de cielo, ver la opcion de poner la parte del bonus
+	int color_ceiling; // ver la opcion de poner la parte del bonus
 
 	int is_floor_set; // 1 si ya leímos el color del suelo
 	int is_ceil_set;  // 1 si ya leímos el color del techo

@@ -1,41 +1,5 @@
 #include "../includes/cub3d.h"
 
-// poner despues del mergeo.
-// void init_player(t_player *p)
-// {
-//     if (!p->dir_char)
-//         return;
-
-//     if (*p->dir_char == 'N')
-//     {
-//         p->dir_x = 0;
-//         p->dir_y = -1;
-//         p->plane_x = 0.66;
-//         p->plane_y = 0;
-//     }
-//     else if (*p->dir_char == 'S')
-//     {
-//         p->dir_x = 0;
-//         p->dir_y = 1;
-//         p->plane_x = -0.66;
-//         p->plane_y = 0;
-//     }
-//     else if (*p->dir_char == 'E')
-//     {
-//         p->dir_x = 1;
-//         p->dir_y = 0;
-//         p->plane_x = 0;
-//         p->plane_y = 0.66;
-//     }
-//     else if (*p->dir_char == 'W')
-//     {
-//         p->dir_x = -1;
-//         p->dir_y = 0;
-//         p->plane_x = 0;
-//         p->plane_y = -0.66;
-//     }
-// }
-
 int	check_extension(char *file)
 {
 	size_t	len;
@@ -65,16 +29,16 @@ int	main(int argc, char **argv)
 		free_game(&game);
 		return (1);
 	}
-	printf("✅ ¡ÉXITO! El mapa es válido, cerrado y las texturas existen.\n");
-	printf("🗺️ Dimensiones: %d filas x %d columnas\n", game.map.rows, game.map.cols);
-	printf("👤 Jugador en: (%f, %f) mirando al %c\n", game.player.x, game.player.y, game.player.dir_char);
-	free_game(&game);
-	//init_player despues del mergeo.
+	// printf("✅ ¡ÉXITO! El mapa es válido, cerrado y las texturas existen.\n");
+	// printf("🗺️ Dimensiones: %d filas x %d columnas\n", game.map.rows, game.map.cols);
+	// printf("👤 Jugador en: (%f, %f) mirando al %c\n", game.player.x, game.player.y, game.player.dir_char);
+    init_player(&game.player);
 	if (init_game(&game))
 		return (1);
 	set_hook(&game);
 	game.runnig = 1;
 	mlx_loop_hook(game.img_mlx, game_loop, &game);
 	mlx_loop(game.img_mlx);
+	//free_game(&game);
 	return (0);
 }

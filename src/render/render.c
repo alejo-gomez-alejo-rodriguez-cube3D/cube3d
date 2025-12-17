@@ -28,8 +28,6 @@ int	init_mlx(t_game *game)
 	game->img_mlx = mlx_init();
 	if (!game->img_mlx)
 		return (print_error("mlx_init falied"));
-	game->win_w = 800;
-	game->win_h = 800;
 	game->window = mlx_new_window(game->img_mlx, game->win_w, game->win_h,
 			"cub3D");
 	if (!game->window)
@@ -59,8 +57,6 @@ int	game_loop(t_game *g)
 {
 	if (g->runnig == 0)
 		return (0);
-	// prueba de textura temporal
-	// blit_texture_center(g, &g->config.tex_north);
 	raycast_scene(g);
 	mlx_put_image_to_window(g->img_mlx, g->window, g->screen.img_mlx, 0, 0);
 	return (0);
