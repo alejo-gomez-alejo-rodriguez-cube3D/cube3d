@@ -14,4 +14,8 @@ int     parse_map_line(char *line, t_game *game);
 
 int	    validate_map(t_game *game);
 
+int	check_walls(t_game *game);
+
+int	free_game(t_game *game);
+
 #endif
