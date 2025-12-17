@@ -29,16 +29,16 @@ int	main(int argc, char **argv)
 		free_game(&game);
 		return (1);
 	}
-	printf("✅ ¡ÉXITO! El mapa es válido, cerrado y las texturas existen.\n");
-	printf("🗺️ Dimensiones: %d filas x %d columnas\n", game.map.rows, game.map.cols);
-	printf("👤 Jugador en: (%f, %f) mirando al %c\n", game.player.x, game.player.y, game.player.dir_char);
-	free_game(&game);
-	//init_player despues del mergeo.
+	// printf("✅ ¡ÉXITO! El mapa es válido, cerrado y las texturas existen.\n");
+	// printf("🗺️ Dimensiones: %d filas x %d columnas\n", game.map.rows, game.map.cols);
+	// printf("👤 Jugador en: (%f, %f) mirando al %c\n", game.player.x, game.player.y, game.player.dir_char);
+    init_player(&game.player);
 	if (init_game(&game))
 		return (1);
 	set_hook(&game);
 	game.runnig = 1;
 	mlx_loop_hook(game.img_mlx, game_loop, &game);
 	mlx_loop(game.img_mlx);
+	//free_game(&game);
 	return (0);
 }
