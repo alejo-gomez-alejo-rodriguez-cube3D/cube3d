@@ -1,11 +1,9 @@
-EA ./textures/hola.xpm
+NO ./textures/fondo.xpm
+SO ./textures/fondo.xpm
+WE ./textures/fondo.xpm
+EA ./textures/fondo.xpm
 
-NO ./textures/hola3.xpm
-
-SO ./textures/hola2.xpm
-WE ./textures/hola1.xpm
-
-F 220,100,56
+F    220,100,0
 C 225,30,0
 
 
