@@ -32,6 +32,7 @@ RAYCAST_SRCS = src/raycasting/raycasting.c \
                src/raycasting/raycasting_utils.c \
                src/raycasting/compute_ray.c \
                src/raycasting/dda.c \
+               src/raycasting/drawing.c \
 
 UTILS_SRCS  = src/utils/error.c \
               src/utils/free.c \

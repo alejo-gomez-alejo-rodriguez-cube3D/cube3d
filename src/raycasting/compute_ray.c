@@ -12,33 +12,48 @@
 
 #include "./includes/cub3d.h"
 
-void compute_perp_dist(t_ray *r)
+void	compute_tex_x(t_game *g, t_ray *r, t_tex *tex)
 {
-    if (r->side == 0)
-        r->perp_wall_dist = r->side_dist_x - r->delta_dist_x;
-    else
-        r->perp_wall_dist = r->side_dist_y - r->delta_dist_y;
+	double	wall_x;
+
+	if (r->side == 0)
+		wall_x = g->player.y + r->perp_wall_dist * r->ray_dir_y;
+	else
+		wall_x = g->player.x + r->perp_wall_dist * r->ray_dir_x;
+	wall_x -= floor(wall_x);
+	r->tex_x = (int)(wall_x * tex->width);
+	if (r->side == 0 && r->ray_dir_x > 0)
+		r->tex_x = tex->width - r->tex_x - 1;
+	if (r->side == 1 && r->ray_dir_y < 0)
+		r->tex_x = tex->width - r->tex_x - 1;
 }
 
-void compute_line_height(t_game *g, t_ray *r)
+void	compute_perp_dist(t_ray *r)
 {
-    r->line_height = (int)(g->win_h / r->perp_wall_dist);
+	if (r->side == 0)
+		r->perp_wall_dist = r->side_dist_x - r->delta_dist_x;
+	else
+		r->perp_wall_dist = r->side_dist_y - r->delta_dist_y;
 }
 
-void compute_draw_limits(t_game *g, t_ray *r)
+void	compute_line_height(t_game *g, t_ray *r)
 {
-    r->draw_start = -r->line_height / 2 + g->win_h / 2;
-    if (r->draw_start < 0)
-        r->draw_start = 0;
-
-    r->draw_end = r->line_height / 2 + g->win_h / 2;
-    if (r->draw_end >= g->win_h)
-        r->draw_end = g->win_h - 1;
+	r->line_height = (int)(g->win_h / r->perp_wall_dist);
 }
 
-void compute_wall(t_game *g, t_ray *r)
+void	compute_draw_limits(t_game *g, t_ray *r)
 {
-    compute_perp_dist(r);
-    compute_line_height(g, r);
-    compute_draw_limits(g, r);
+	r->draw_start = -r->line_height / 2 + g->win_h / 2;
+	if (r->draw_start < 0)
+		r->draw_start = 0;
+	r->draw_end = r->line_height / 2 + g->win_h / 2;
+	if (r->draw_end >= g->win_h)
+		r->draw_end = g->win_h - 1;
+}
+
+void	compute_wall(t_game *g, t_ray *r)
+{
+	compute_perp_dist(r);
+	compute_line_height(g, r);
+	compute_draw_limits(g, r);
 }

@@ -28,8 +28,6 @@ int	init_mlx(t_game *game)
 	game->img_mlx = mlx_init();
 	if (!game->img_mlx)
 		return (print_error("mlx_init falied"));
-	game->win_w = 800;
-	game->win_h = 800;
 	game->window = mlx_new_window(game->img_mlx, game->win_w, game->win_h,
 			"cub3D");
 	if (!game->window)
