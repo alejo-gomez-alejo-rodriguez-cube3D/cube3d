@@ -31,7 +31,7 @@ static int	parse_line(char *line, t_game *game)
 	int		status;
 
 	if (is_empty_line(line)) 
-		return (0);
+        return (0);
 
 	ptr = skip_spaces(line);
 	

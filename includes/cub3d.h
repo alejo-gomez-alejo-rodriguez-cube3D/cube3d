@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alejandro <marvin@42.fr>                   +#+  +:+       +#+        */
+/*   By: alejaro2 <alejaro2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 19:04:24 by alejandro         #+#    #+#             */
-/*   Updated: 2025/12/17 19:04:27 by alejandro        ###   ########.fr       */
+/*   Updated: 2025/12/18 14:13:47 by alejaro2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct s_map
 	char **map; // matriz del mapa que debe venir del parser
 	int rows;   // opcional ver para que se usa bien
 	int cols;   // opcional ver para que usarlo
+	int has_ended;
 }			t_map;
 
 // colores y caracteristicas del mapa
