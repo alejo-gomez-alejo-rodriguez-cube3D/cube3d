@@ -16,8 +16,8 @@ void	init_constants(t_game *g)
 {
 	g->win_w = 600;
 	g->win_h = 400;
-	g->move_speed = 0.08;
-	g->rot_speed = 0.06;
+	g->move_speed = 0.10;
+	g->rot_speed = 0.08;
 	g->runnig = 1;
 	g->config.is_floor_set = 0;
 	g->config.is_ceil_set = 0;
