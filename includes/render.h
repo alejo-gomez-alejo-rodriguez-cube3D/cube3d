@@ -62,5 +62,9 @@ unsigned int			get_tex_pixel(t_tex *tx, int x, int y);
 // buttons
 int						key_press(int key, t_game *g);
 int						close_window(t_game *g);
+void rotate_right(t_game *g);
+void rotate_left(t_game *g);
+void move_forward(t_game *g);
+void move_backward(t_game *g);
 
 #endif

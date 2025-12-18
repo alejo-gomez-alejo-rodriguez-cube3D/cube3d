@@ -21,6 +21,15 @@
 # include <unistd.h>
 # include <math.h>
 
+# define KEY_W 119
+# define KEY_D 97
+# define KEY_S 115
+# define KEY_A 100
+# define LEFT 65361
+# define KEY_ESC 65307
+# define RIGHT 65363
+# define ENTER 65293
+
 // struct raycasting
 
 typedef struct s_ray
