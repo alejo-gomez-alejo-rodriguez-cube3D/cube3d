@@ -76,16 +76,41 @@ void rotate_right(t_game *g)
                       + g->player.plane_y * cos(-g->rot_speed);
 }
 
+void handle_input(t_game *g)
+{
+    if (g->input.forward)
+        move_forward(g);
+    if (g->input.backward)
+        move_backward(g);
+    if (g->input.rotate_left)
+        rotate_left(g);
+    if (g->input.rotate_right)
+        rotate_right(g);
+}
+
+int key_release(int keycode, t_game *g)
+{
+    if (keycode == KEY_W)
+        g->input.forward = 0;
+    else if (keycode == KEY_S)
+        g->input.backward = 0;
+    else if (keycode == KEY_A)
+        g->input.rotate_left = 0;
+    else if (keycode == KEY_D)
+        g->input.rotate_right = 0;
+    return (0);
+}
+
 int key_press(int keycode, t_game *g)
 {
     if (keycode == KEY_W)
-        move_forward(g);
+		g->input.forward = 1;
     else if (keycode == KEY_S)
-        move_backward(g);
+		g->input.backward = 1;
     else if (keycode == KEY_A)
-        rotate_left(g);
+		g->input.rotate_left = 1;
     else if (keycode == KEY_D)
-        rotate_right(g);
+		g->input.rotate_right = 1;
     else if (keycode == KEY_ESC)
 		destroy_game(g);
     return (0);

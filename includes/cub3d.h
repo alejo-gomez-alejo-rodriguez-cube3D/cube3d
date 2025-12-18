@@ -110,6 +110,15 @@ typedef struct s_player
 	char  dir_char; //'N', 'S', 'E', 'W' direccion inicial desde el parser
 }			t_player;
 
+// input de movimiento
+typedef struct s_input
+{
+    int forward;
+    int backward;
+    int rotate_left;
+    int rotate_right;
+}   t_input;
+
 // información del mapa
 typedef struct s_map
 {
@@ -141,6 +150,7 @@ typedef struct s_game
 	void *window;      // ventana MLX (mlx_new_window)
 	t_img screen;      // imagen usada como backbuffer
 	t_player player;   // datos del jugador
+	t_input input;     // input de movimiento
 	t_map map;         // matriz del mapa
 	t_config config;   // texturas y colores
 	int win_w;         // nchura de la ventana

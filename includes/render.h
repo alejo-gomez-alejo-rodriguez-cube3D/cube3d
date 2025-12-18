@@ -60,7 +60,9 @@ void					put_pixel(t_img *img, int x, int y, int color);
 unsigned int			get_tex_pixel(t_tex *tx, int x, int y);
 
 // buttons
+void handle_input(t_game *g);
 int						key_press(int key, t_game *g);
+int key_release(int keycode, t_game *g);
 int						close_window(t_game *g);
 void rotate_right(t_game *g);
 void rotate_left(t_game *g);

@@ -16,9 +16,13 @@ void	init_constants(t_game *g)
 {
 	g->win_w = 600;
 	g->win_h = 400;
-	g->move_speed = 0.10;
-	g->rot_speed = 0.08;
+	g->move_speed = 0.008;
+	g->rot_speed = 0.006;
 	g->runnig = 1;
+	g->input.forward = 0;
+	g->input.backward = 0;
+	g->input.rotate_left = 0;
+	g->input.rotate_right = 0;
 	g->config.is_floor_set = 0;
 	g->config.is_ceil_set = 0;
 }
@@ -57,6 +61,7 @@ int	game_loop(t_game *g)
 {
 	if (g->runnig == 0)
 		return (0);
+	handle_input(g);
 	raycast_scene(g);
 	mlx_put_image_to_window(g->img_mlx, g->window, g->screen.img_mlx, 0, 0);
 	return (0);
