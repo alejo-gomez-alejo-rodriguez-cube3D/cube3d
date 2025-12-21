@@ -14,10 +14,10 @@
 
 void	init_constants(t_game *g)
 {
-	g->win_w = 600;
-	g->win_h = 400;
-	g->move_speed = 0.008;
-	g->rot_speed = 0.006;
+	g->win_w = 800;
+	g->win_h = 600;
+	g->move_speed = 0.010;
+	g->rot_speed = 0.008;
 	g->runnig = 1;
 	g->input.forward = 0;
 	g->input.backward = 0;
