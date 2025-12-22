@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alejaro2 <alejaro2@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/18 18:29:53 by alejaro2          #+#    #+#             */
+/*   Updated: 2025/12/18 18:29:55 by alejaro2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 static int	get_max_width(char **map)
@@ -60,7 +72,7 @@ int	make_map_rectangular(t_game *game)
 			if (!new_line)
 				return (print_error("Memory error making map rectangular"));
 			free(game->map.map[i]);
-			game->map.map[i] = new_line; 
+			game->map.map[i] = new_line;
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: alejaro2 <alejaro2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 19:58:20 by alejaro2          #+#    #+#             */
-/*   Updated: 2025/03/21 12:46:46 by alejaro2         ###   ########.fr       */
+/*   Updated: 2025/12/18 18:50:11 by alejaro2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char	*ft_strchr_gnl(const char *s, int c)
 		return ((char *)s);
 	return (NULL);
 }
+
 size_t	ft_strlen_gnl(const char *str)
 {
 	size_t	i;
@@ -82,6 +83,7 @@ size_t	ft_strlcpy_gnl(char *dst, const char *src, size_t size)
 	}
 	return (j);
 }
+
 char	*ft_strjoin_gnl(char const *s1, char const *s2)
 {
 	size_t	len;

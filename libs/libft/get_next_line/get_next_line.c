@@ -6,7 +6,7 @@
 /*   By: alejaro2 <alejaro2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:18:42 by alejaro2          #+#    #+#             */
-/*   Updated: 2025/03/21 11:03:53 by alejaro2         ###   ########.fr       */
+/*   Updated: 2025/12/18 18:49:33 by alejaro2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,22 @@ char	*read_until(int fd, char *accumulated)
 	return (free(buffer), accumulated);
 }
 
-
 char	*get_next_line(int fd)
 {
 	static char	*accumulated;
 	char		*line;
 	char		*temp;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0)
+	{
+		if (accumulated)
+		{
+			free(accumulated);
+			accumulated = NULL;
+		}
+		return (NULL);
+	}
+	if (BUFFER_SIZE <= 0)
 		return (NULL);
 	accumulated = read_until(fd, accumulated);
 	if (!accumulated)
@@ -103,4 +111,3 @@ char	*get_next_line(int fd)
 	accumulated = temp;
 	return (line);
 }
-

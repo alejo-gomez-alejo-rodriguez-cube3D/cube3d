@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate_map.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alejaro2 <alejaro2@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/18 18:25:36 by alejaro2          #+#    #+#             */
+/*   Updated: 2025/12/18 18:25:39 by alejaro2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 static int	is_valid_char(char c)
@@ -70,9 +82,9 @@ int	validate_map(t_game *game)
 		return (1);
 	if (check_player_count(game) != 0)
 		return (1);
-    if (make_map_rectangular(game) != 0)
+	if (make_map_rectangular(game) != 0)
 		return (1);
 	if (check_walls(game) != 0)
-        return (1);
+		return (1);
 	return (0);
 }

@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_textures.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alejaro2 <alejaro2@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/18 18:28:00 by alejaro2          #+#    #+#             */
+/*   Updated: 2025/12/18 18:28:02 by alejaro2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
-#include <fcntl.h> 
+#include <fcntl.h>
 
 static int	check_file_exists(char *path)
 {
@@ -38,13 +50,10 @@ int	parse_texture(char *line, t_tex *tex, char *type)
 
 	if (check_duplicate(tex->path, type))
 		return (1);
-
 	ptr = line + 2;
 	tex->path = ft_strtrim(ptr, " \n\t");
-
 	if (!tex->path)
 		return (print_error("Memory allocation failed for texture path"));
-
 	if (ft_strlen(tex->path) == 0)
 	{
 		free(tex->path);
