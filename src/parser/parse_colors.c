@@ -73,8 +73,8 @@ int	parse_color(char *ptr, t_game *game, char type)
 	char	**rgb;
 	int		err;
 
-	if ((type == 'F' && game->config.is_floor_set)
-		|| (type == 'C' && game->config.is_ceil_set))
+	if ((type == 'F' && game->config.is_floor_set) || (type == 'C'
+			&& game->config.is_ceil_set))
 		return (print_error("Duplicate color defined"));
 	ptr += 2;
 	rgb = ft_split(ptr, ',');

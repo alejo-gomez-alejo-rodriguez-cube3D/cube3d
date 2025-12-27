@@ -19,7 +19,6 @@ char	*skip_spaces(char *line)
 	return (line);
 }
 
-
 int	is_empty_line(char *line)
 {
 	char	*ptr;
@@ -35,3 +34,4 @@ int	print_error(char *msg)
 	printf("Error\n%s\n", msg);
 	return (1);
 }
+

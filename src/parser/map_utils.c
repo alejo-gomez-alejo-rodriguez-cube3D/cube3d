@@ -72,7 +72,7 @@ int	make_map_rectangular(t_game *game)
 			if (!new_line)
 				return (print_error("Memory error making map rectangular"));
 			free(game->map.map[i]);
-			game->map.map[i] = new_line; 
+			game->map.map[i] = new_line;
 		}
 		i++;
 	}
