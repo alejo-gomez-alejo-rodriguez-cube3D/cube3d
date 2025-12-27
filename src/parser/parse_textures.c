@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alejaro2 <alejaro2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alejandro <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/18 18:28:00 by alejaro2          #+#    #+#             */
-/*   Updated: 2025/12/18 18:28:02 by alejaro2         ###   ########.fr       */
+/*   Created: 2025/12/27 18:04:05 by alejandro         #+#    #+#             */
+/*   Updated: 2025/12/27 18:04:06 by alejandro        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
-#include <fcntl.h>
+#include "./includes/cub3d.h"
 
 static int	check_file_exists(char *path)
 {

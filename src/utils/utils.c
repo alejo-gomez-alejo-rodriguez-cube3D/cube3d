@@ -1,57 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alejandro <marvin@42.fr>                   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/27 17:58:05 by alejandro         #+#    #+#             */
+/*   Updated: 2025/12/27 17:58:08 by alejandro        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
-#include <stdlib.h>
+#include "./includes/cub3d.h"
 
-static void	free_map_array(t_game *game)
+void	get_delta_time(t_game *g)
 {
-	int	i;
+	double	time;
 
-	if (game->map.map == NULL)
-		return ;
-
-	i = 0;
-	while (game->map.map[i])
-	{
-		free(game->map.map[i]);
-		i++;
-	}
-	free(game->map.map);
-	game->map.map = NULL;
+	time = get_time_ms();
+	g->delta_time = time - g->last_time;
+	g->last_time = time;
+	if (g->delta_time > 0.05)
+		g->delta_time = 0.05;
 }
 
-static void	free_textures(t_game *game)
+double	get_time_ms(void)
 {
-	if (game->config.tex_north.path)
-		free(game->config.tex_north.path);
-	if (game->config.tex_south.path)
-		free(game->config.tex_south.path);
-	if (game->config.tex_west.path)
-		free(game->config.tex_west.path);
-	if (game->config.tex_east.path)
-		free(game->config.tex_east.path);
-	if (game->config.tex_door.path)
-		free(game->config.tex_door.path);
-	if (game->config.tex_sprite.path)
-		free(game->config.tex_sprite.path);
-}
+	struct timeval	tv;
 
-int	free_game(t_game *game)
-{
-	free_textures(game);
-	free_map_array(game);
-
-	// Más adelante, cuando añadamos gráficos, aquí liberar
-	// la ventana y la imagen (mlx_destroy_window, etc.)
-	/*
-	if (game->win)
-		mlx_destroy_window(game->mlx, game->win);
-	if (game->mlx)
-	{
-		mlx_destroy_display(game->mlx); // Solo en Linux
-		free(game->mlx);
-	}
-	*/
-	return (0);
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec + tv.tv_usec / 1000000.0);
 }
 
 int	exit_error(t_game *game, char *msg)

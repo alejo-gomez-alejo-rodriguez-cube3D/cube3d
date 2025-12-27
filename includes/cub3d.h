@@ -19,17 +19,22 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <sys/time.h>
 # include <math.h>
 
 # define KEY_W 119
 # define KEY_D 97
 # define KEY_S 115
 # define KEY_A 100
-# define LEFT 65361
+# define RIGHT 65361
 # define KEY_ESC 65307
-# define RIGHT 65363
+# define LEFT 65363
 # define ENTER 65293
 
+# define WALL_MARGIN 0.2
+# define MIN_WALL_DIST 0.1
+# define MOVE_SPEED_BASE 4.5
+# define ROT_SPEED_BASE 2.5
 // struct raycasting
 
 typedef struct s_ray
@@ -46,6 +51,9 @@ typedef struct s_ray
 
     double delta_dist_x;
     double delta_dist_y;
+
+    double tex_step;
+    double tex_pos;
 
     int step_x;
     int step_y;
@@ -115,6 +123,8 @@ typedef struct s_input
 {
     int forward;
     int backward;
+    int	strafe_left;
+    int	strafe_right;
     int rotate_left;
     int rotate_right;
 }   t_input;
@@ -154,16 +164,27 @@ typedef struct s_game
 	t_input input;     // input de movimiento
 	t_map map;         // matriz del mapa
 	t_config config;   // texturas y colores
+
 	int win_w;         // nchura de la ventana
 	int win_h;        // altura de la ventana
+
+	double	last_time;	// tiempo del frame anterior.
+	double	delta_time;	// tiempo entre frames (segundos).
+
 	double move_speed; // velocidad de movimiento (units/sec)
 	double rot_speed;  // velocidad de rotacion (rad/sec)
+
 	int runnig;        // flag para el loop 1 = running 0 = salir
 }			t_game;
 
+//time_game
+double	get_time_ms(void);
+void	get_delta_time(t_game *g);
 
 //free mem
 int	destroy_game(t_game *g);
+void	free_map_array(t_game *game);
+void	free_textures(t_game *game);
 
 # include "parser.h"
 # include "render.h"

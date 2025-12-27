@@ -46,7 +46,7 @@ void	init_dda_y(t_game *g, t_ray *r)
 // Chooses the next grid cell based on the closest side distance.
 void	dda_loop(t_game *g, t_ray *r)
 {
-	while (!r->hit)
+	while (r->hit == 0)
 	{
 		if (r->side_dist_x < r->side_dist_y)
 		{
