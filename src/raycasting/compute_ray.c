@@ -28,12 +28,14 @@ void	compute_tex_x(t_game *g, t_ray *r, t_tex *tex)
 		r->tex_x = tex->width - r->tex_x - 1;
 }
 
-void	compute_perp_dist(t_ray *r)
+void	compute_perp_dist(t_game *g, t_ray *r)
 {
 	if (r->side == 0)
-		r->perp_wall_dist = r->side_dist_x - r->delta_dist_x;
+		r->perp_wall_dist = (r->map_x - g->player.x + (1 - r->step_x) / 2.0)
+			/ r->ray_dir_x;
 	else
-		r->perp_wall_dist = r->side_dist_y - r->delta_dist_y;
+		r->perp_wall_dist = (r->map_y - g->player.y + (1 - r->step_y) / 2.0)
+			/ r->ray_dir_y;
 }
 
 void	compute_line_height(t_game *g, t_ray *r)
@@ -53,7 +55,10 @@ void	compute_draw_limits(t_game *g, t_ray *r)
 
 void	compute_wall(t_game *g, t_ray *r)
 {
-	compute_perp_dist(r);
+	compute_perp_dist(g, r);
 	compute_line_height(g, r);
 	compute_draw_limits(g, r);
+	r->tex_step = (double)g->config.tex_north.height / r->line_height;
+	r->tex_pos = (r->draw_start - g->win_h / 2 + r->line_height / 2)
+		* r->tex_step;
 }

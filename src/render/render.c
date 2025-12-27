@@ -16,8 +16,8 @@ void	init_constants(t_game *g)
 {
 	g->win_w = 800;
 	g->win_h = 600;
-	g->move_speed = 0.010;
-	g->rot_speed = 0.008;
+	g->move_speed = MOVE_SPEED_BASE;
+	g->rot_speed = ROT_SPEED_BASE;
 	g->runnig = 1;
 	g->input.forward = 0;
 	g->input.backward = 0;
@@ -59,6 +59,7 @@ int	init_game(t_game *g)
 
 int	game_loop(t_game *g)
 {
+	get_delta_time(g);
 	if (g->runnig == 0)
 		return (0);
 	handle_input(g);

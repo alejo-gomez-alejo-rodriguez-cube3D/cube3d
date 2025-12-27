@@ -48,7 +48,12 @@ void	draw_wall(t_game *g, t_ray *r, t_tex *tex, int x)
 	y = r->draw_start;
 	while (y < r->draw_end)
 	{
-		tex_y = (y - r->draw_start) * tex->height / r->line_height;
+		tex_y = (int)r->tex_pos;
+		if (tex_y < 0)
+			tex_y = 0;
+		if (tex_y >= tex->height)
+			tex_y = tex->height - 1;
+		r->tex_pos += r->tex_step;
 		color = get_tex_pixel(tex, r->tex_x, tex_y);
 		put_pixel(&g->screen, x, y, color);
 		y++;

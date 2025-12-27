@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alejandro <marvin@42.fr>                   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/27 17:36:53 by alejandro         #+#    #+#             */
+/*   Updated: 2025/12/27 17:36:56 by alejandro        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 int	check_extension(char *file)
@@ -22,23 +34,21 @@ int	main(int argc, char **argv)
 	if (parse_file(argv[1], &game) != 0)
 	{
 		free_game(&game);
-		return(1);
+		return (1);
 	}
 	if (validate_map(&game) != 0)
 	{
 		free_game(&game);
 		return (1);
 	}
-	// printf("✅ ¡ÉXITO! El mapa es válido, cerrado y las texturas existen.\n");
-	// printf("🗺️ Dimensiones: %d filas x %d columnas\n", game.map.rows, game.map.cols);
-	// printf("👤 Jugador en: (%f, %f) mirando al %c\n", game.player.x, game.player.y, game.player.dir_char);
-    init_player(&game.player);
+	init_player(&game.player);
 	if (init_game(&game))
 		return (1);
 	set_hook(&game);
 	game.runnig = 1;
+	game.last_time = get_time_ms();
 	mlx_loop_hook(game.img_mlx, game_loop, &game);
 	mlx_loop(game.img_mlx);
-	//free_game(&game);
+	// free_game(&game);
 	return (0);
 }

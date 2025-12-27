@@ -20,6 +20,7 @@ typedef struct s_game	t_game;
 // raycasting
 void					raycast_scene(t_game *g);
 void					init_ray(t_game *g, t_ray *r, int x);
+void					init_step(t_game *g, t_ray *r);
 t_tex					*select_wall_texture(t_game *g, t_ray *r);
 
 // drawing
@@ -39,7 +40,7 @@ void					compute_tex_x(t_game *g, t_ray *r, t_tex *tex);
 void					compute_wall(t_game *g, t_ray *r);
 void					compute_draw_limits(t_game *g, t_ray *r);
 void					compute_line_height(t_game *g, t_ray *r);
-void					compute_perp_dist(t_ray *r);
+void					compute_perp_dist(t_game *g, t_ray *r);
 
 // renders
 int						init_mlx(t_game *game);
@@ -60,13 +61,15 @@ void					put_pixel(t_img *img, int x, int y, int color);
 unsigned int			get_tex_pixel(t_tex *tx, int x, int y);
 
 // buttons
-void handle_input(t_game *g);
+void					handle_input(t_game *g);
 int						key_press(int key, t_game *g);
-int key_release(int keycode, t_game *g);
+int						key_release(int keycode, t_game *g);
 int						close_window(t_game *g);
-void rotate_right(t_game *g);
-void rotate_left(t_game *g);
-void move_forward(t_game *g);
-void move_backward(t_game *g);
+void					rotate_right(t_game *g);
+void					rotate_left(t_game *g);
+void					move_forward(t_game *g);
+void					move_backward(t_game *g);
+void					strafe_right(t_game *g);
+void					strafe_left(t_game *g);
 
 #endif

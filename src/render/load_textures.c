@@ -18,7 +18,6 @@ int	load_texture(t_game *g, t_tex *tex)
 		return (print_error("Texture path NULL"), 1);
 	tex->img_mlx = mlx_xpm_file_to_image(g->img_mlx, tex->path, &tex->width,
 			&tex->height);
-	printf("numero: %d %d\n", tex->height, tex->width);
 	if (!tex->img_mlx)
 		return (print_error("Error loading texture"));
 	tex->addr = mlx_get_data_addr(tex->img_mlx, &tex->bit_pp, &tex->line_len,
