@@ -6,7 +6,7 @@
 /*   By: alejaro2 <alejaro2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 19:04:24 by alejandro         #+#    #+#             */
-/*   Updated: 2025/12/18 14:13:47 by alejaro2         ###   ########.fr       */
+/*   Updated: 2026/01/08 15:50:48 by alejaro2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 # include "../libs/libft/include/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include <fcntl.h>
+# include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <unistd.h>
 # include <sys/time.h>
-# include <math.h>
+# include <unistd.h>
+# include "parser.h"
+# include "render.h"
 
 # define KEY_W 119
 # define KEY_D 97
@@ -39,37 +41,37 @@
 
 typedef struct s_ray
 {
-    double camera_x;
-    double ray_dir_x;
-    double ray_dir_y;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
 
-    int map_x;
-    int map_y;
+	int		map_x;
+	int		map_y;
 
-    double side_dist_x;
-    double side_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
 
-    double delta_dist_x;
-    double delta_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
 
-    double tex_step;
-    double tex_pos;
+	double	tex_step;
+	double	tex_pos;
 
-    int step_x;
-    int step_y;
+	int		step_x;
+	int		step_y;
 
-    int hit;
-    int side;
+	int		hit;
+	int		side;
 
-    double perp_wall_dist;
+	double	perp_wall_dist;
 
-    int line_height;
-    int draw_start;
-    int draw_end;
-	
-    int tex_x;
-    int tex_y;
-} t_ray;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+
+	int		tex_x;
+	int		tex_y;
+}			t_ray;
 
 // imagen en el MLX
 typedef struct s_img
@@ -91,7 +93,7 @@ typedef struct s_tex
 	char	*path;
 	int		width;
 	int		height;
-	int		bit_pp; //bits por pixel
+	int bit_pp; // bits por pixel
 	int		line_len;
 	int		endian;
 }			t_tex;
@@ -99,12 +101,12 @@ typedef struct s_tex
 // perspectiva del jugador
 typedef struct s_dir_init
 {
-    char    dir;
-    double  dir_x;
-    double  dir_y;
-    double  plane_x;
-    double  plane_y;
-}   t_dir_init;
+	char	dir;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+}			t_dir_init;
 
 // información del jugador
 typedef struct s_player
@@ -115,19 +117,19 @@ typedef struct s_player
 	double dir_y;   // vector direccion y (unitario)
 	double plane_x; // plano de la camara x (para FOV)
 	double plane_y; // plano de la camara y
-	char  dir_char; //'N', 'S', 'E', 'W' direccion inicial desde el parser
+	char dir_char;  //'N', 'S', 'E', 'W' direccion inicial desde el parser
 }			t_player;
 
 // input de movimiento
 typedef struct s_input
 {
-    int forward;
-    int backward;
-    int	strafe_left;
-    int	strafe_right;
-    int rotate_left;
-    int rotate_right;
-}   t_input;
+	int		forward;
+	int		backward;
+	int		strafe_left;
+	int		strafe_right;
+	int		rotate_left;
+	int		rotate_right;
+}			t_input;
 
 // información del mapa
 typedef struct s_map
@@ -135,7 +137,7 @@ typedef struct s_map
 	char **map; // matriz del mapa que debe venir del parser
 	int rows;   // opcional ver para que se usa bien
 	int cols;   // opcional ver para que usarlo
-	int has_ended;
+	int		has_ended;
 }			t_map;
 
 // colores y caracteristicas del mapa
@@ -157,35 +159,34 @@ typedef struct s_config
 // estructura general para las estructuras
 typedef struct s_game
 {
-	void *img_mlx;     // iniciar una sola vez, es la ventana del mlx_init()
-	void *window;      // ventana MLX (mlx_new_window)
-	t_img screen;      // imagen usada como backbuffer
-	t_player player;   // datos del jugador
-	t_input input;     // input de movimiento
-	t_map map;         // matriz del mapa
-	t_config config;   // texturas y colores
+	void *img_mlx;   // iniciar una sola vez, es la ventana del mlx_init()
+	void *window;    // ventana MLX (mlx_new_window)
+	t_img screen;    // imagen usada como backbuffer
+	t_player player; // datos del jugador
+	t_input input;   // input de movimiento
+	t_map map;       // matriz del mapa
+	t_config config; // texturas y colores
 
-	int win_w;         // nchura de la ventana
-	int win_h;        // altura de la ventana
+	int win_w; // nchura de la ventana
+	int win_h; // altura de la ventana
 
-	double	last_time;	// tiempo del frame anterior.
-	double	delta_time;	// tiempo entre frames (segundos).
+	double last_time;  // tiempo del frame anterior.
+	double delta_time; // tiempo entre frames (segundos).
 
 	double move_speed; // velocidad de movimiento (units/sec)
 	double rot_speed;  // velocidad de rotacion (rad/sec)
 
-	int runnig;        // flag para el loop 1 = running 0 = salir
+	int runnig; // flag para el loop 1 = running 0 = salir
 }			t_game;
 
-//time_game
-double	get_time_ms(void);
-void	get_delta_time(t_game *g);
+// time_game
+double		get_time_ms(void);
+void		get_delta_time(t_game *g);
 
-//free mem
-int	destroy_game(t_game *g);
-void	free_map_array(t_game *game);
-void	free_textures(t_game *game);
+// free mem
+int			destroy_game(t_game *g);
+void		free_map_array(t_game *game);
+void		free_textures(t_game *game);
 
-# include "parser.h"
-# include "render.h"
+
 #endif

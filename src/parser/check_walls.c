@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alejandro <marvin@42.fr>                   +#+  +:+       +#+        */
+/*   By: alejaro2 <alejaro2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 18:02:34 by alejandro         #+#    #+#             */
-/*   Updated: 2025/12/27 18:02:36 by alejandro        ###   ########.fr       */
+/*   Updated: 2026/01/08 15:43:45 by alejaro2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,3 @@ int	check_walls(t_game *game)
 		return (print_error("Map is not closed/surrounded by walls"));
 	return (0);
 }
-

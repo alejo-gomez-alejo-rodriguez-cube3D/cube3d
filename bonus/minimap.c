@@ -6,7 +6,7 @@
 /*   By: alejaro2 <alejaro2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 19:30:36 by alejandro         #+#    #+#             */
-/*   Updated: 2026/01/05 00:07:27 by alejaro2         ###   ########.fr       */
+/*   Updated: 2026/01/08 15:39:18 by alejaro2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,43 +58,42 @@ static void	draw_player_center(t_game *game)
 	}
 }
 
+/*
+** Función auxiliar: Decide qué color pintar basándose en la posición del mapa
+*/
+static int	get_minimap_pixel_color(t_game *game, double x, double y)
+{
+	if (x < 0 || x >= game->map.cols || y < 0 || y >= game->map.rows)
+		return (C_MM_BG);
+	if (game->map.map[(int)y][(int)x] == '1')
+		return (C_MM_WALL);
+	if (game->map.map[(int)y][(int)x] != ' ')
+		return (C_MM_FLOOR);
+	return (C_MM_BG);
+}
+
 void	draw_minimap(t_game *game)
 {
-	int screen_x;
-	int screen_y;
-	double map_x;
-	double map_y;
-	int color;
+	int		s_x;
+	int		s_y;
+	double	m_x;
+	double	m_y;
+	int		color;
 
 	draw_minimap_border(game);
-
-	screen_y = 0;
-	while (screen_y < MM_SIZE)
+	s_y = -1;
+	while (++s_y < MM_SIZE)
 	{
-		screen_x = 0;
-		while (screen_x < MM_SIZE)
+		s_x = -1;
+		while (++s_x < MM_SIZE)
 		{
-			map_x = game->player.x + (screen_x - (MM_SIZE / 2)) / MM_ZOOM;
-			map_y = game->player.y + (screen_y - (MM_SIZE / 2)) / MM_ZOOM;
-
-			color = C_MM_BG;
-			if (map_x >= 0 && map_x < game->map.cols && map_y >= 0
-				&& map_y < game->map.rows)
-			{
-				if (game->map.map[(int)map_y][(int)map_x] == '1')
-					color = C_MM_WALL;
-				else if (game->map.map[(int)map_y][(int)map_x] != ' ')
-					color = C_MM_FLOOR;
-			}
+			m_x = game->player.x + (s_x - (MM_SIZE / 2)) / MM_ZOOM;
+			m_y = game->player.y + (s_y - (MM_SIZE / 2)) / MM_ZOOM;
+			color = get_minimap_pixel_color(game, m_x, m_y);
 			if (color != C_MM_BG)
-			{
-				put_pixel(&game->screen, MM_OFFSET_X + screen_x, MM_OFFSET_Y
-					+ screen_y, color);
-			}
-
-			screen_x++;
+				put_pixel(&game->screen, MM_OFFSET_X + s_x, MM_OFFSET_Y + s_y,
+					color);
 		}
-		screen_y++;
 	}
 	draw_player_center(game);
 }

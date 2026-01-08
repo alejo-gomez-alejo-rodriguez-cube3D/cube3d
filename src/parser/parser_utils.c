@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alejandro <marvin@42.fr>                   +#+  +:+       +#+        */
+/*   By: alejaro2 <alejaro2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 18:05:25 by alejandro         #+#    #+#             */
-/*   Updated: 2025/12/27 18:05:29 by alejandro        ###   ########.fr       */
+/*   Updated: 2026/01/08 15:43:59 by alejaro2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,3 @@ int	print_error(char *msg)
 	printf("Error\n%s\n", msg);
 	return (1);
 }
-
