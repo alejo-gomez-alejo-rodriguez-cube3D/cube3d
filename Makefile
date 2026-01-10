@@ -3,6 +3,7 @@ NAME_BONUS  = cub3D_bonus
 
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror -g3
+BONUS_CFLAGS = $(CFLAGS) -DBONUS
 
 SRC_DIR     = src
 OBJ_DIR     = obj
@@ -38,16 +39,17 @@ RAYCAST_SRCS = src/raycasting/raycasting.c \
 
 UTILS_SRCS  = src/utils/error.c \
               src/utils/free.c \
-              src/utils/utils.c
+              src/utils/utils.c \
 
 MAIN_SRC    = src/main.c
 
 SRCS        = $(MAIN_SRC) $(PARSER_SRCS) $(RENDER_SRCS) $(RAYCAST_SRCS) $(UTILS_SRCS)
 OBJS        = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-BONUS_MAIN  = src/main_bonus.c
-BONUS_EXTRA = bonus/minimap.c 
-
+BONUS_MAIN  = bonus/main_bonus.c
+BONUS_EXTRA = bonus/minimap.c \
+                bonus/hooks_bonus.c \
+                
 BONUS_SRCS  = $(BONUS_MAIN) $(BONUS_EXTRA) \
               $(PARSER_SRCS) $(RENDER_SRCS) $(RAYCAST_SRCS) $(UTILS_SRCS)
 
@@ -71,7 +73,7 @@ $(NAME): $(LIBFT) $(MLX) $(OBJS)
 	@echo "✅ $(NAME) creado exitosamente!"
 
 $(NAME_BONUS): $(LIBFT) $(MLX) $(BONUS_OBJS)
-	@$(CC) $(CFLAGS) $(BONUS_OBJS) -L$(LIBFT_DIR) -lft $(MLX_FLAGS) -o $(NAME_BONUS)
+	@$(CC) $(BONUS_CFLAGS) $(BONUS_OBJS) -L$(LIBFT_DIR) -lft $(MLX_FLAGS) -o $(NAME_BONUS)
 	@echo "✅ $(NAME_BONUS) creado exitosamente!"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c

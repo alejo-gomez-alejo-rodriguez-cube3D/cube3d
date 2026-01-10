@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bonus/bonus.h"
+#include "./bonus.h"
 
 int	check_extension(char *file)
 {
@@ -38,24 +38,18 @@ int	main(int argc, char **argv)
 	if (check_extension(argv[1]))
 		return (print_error("File must have .cub extension"));
 	ft_memset(&game, 0, sizeof(t_game));
+	game.bonus_enabled = 1;
 	if (parse_file(argv[1], &game) != 0)
-	{
-		free_game(&game);
-		return (1);
-	}
+		return (free_game(&game), 1);
 	if (validate_map(&game) != 0)
-	{
-		free_game(&game);
-		return (1);
-	}
+		return (free_game(&game), 1);
 	init_player(&game.player);
-	if (init_game(&game))
+	if (init_game_bonus(&game))
 		return (1);
-	set_hook(&game);
+	set_hook_bonus(&game);
 	game.runnig = 1;
 	game.last_time = get_time_ms();
 	mlx_loop_hook(game.img_mlx, game_loop_bonus, &game);
 	mlx_loop(game.img_mlx);
-	// free_game(&game);
 	return (0);
 }

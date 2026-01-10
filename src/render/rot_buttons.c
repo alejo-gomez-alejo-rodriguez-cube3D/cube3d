@@ -12,40 +12,19 @@
 
 #include "./includes/cub3d.h"
 
-void	rotate_left(t_game *g)
+void	rotate_by_angle(t_game *g, double angle)
 {
-	double	frame_rot;
 	double	old_dir_x;
 	double	old_plane_x;
 
-	frame_rot = g->rot_speed * g->delta_time;
 	old_dir_x = g->player.dir_x;
-	g->player.dir_x = g->player.dir_x * cos(frame_rot) - g->player.dir_y
-		* sin(frame_rot);
-	g->player.dir_y = old_dir_x * sin(frame_rot) + g->player.dir_y
-		* cos(frame_rot);
+	g->player.dir_x = g->player.dir_x * cos(angle)
+		- g->player.dir_y * sin(angle);
+	g->player.dir_y = old_dir_x * sin(angle)
+		+ g->player.dir_y * cos(angle);
 	old_plane_x = g->player.plane_x;
-	g->player.plane_x = g->player.plane_x * cos(frame_rot) - g->player.plane_y
-		* sin(frame_rot);
-	g->player.plane_y = old_plane_x * sin(frame_rot) + g->player.plane_y
-		* cos(frame_rot);
-}
-
-void	rotate_right(t_game *g)
-{
-	double	frame_rot;
-	double	old_dir_x;
-	double	old_plane_x;
-
-	frame_rot = g->rot_speed * g->delta_time;
-	old_dir_x = g->player.dir_x;
-	g->player.dir_x = g->player.dir_x * cos(-frame_rot) - g->player.dir_y
-		* sin(-frame_rot);
-	g->player.dir_y = old_dir_x * sin(-frame_rot) + g->player.dir_y
-		* cos(-frame_rot);
-	old_plane_x = g->player.plane_x;
-	g->player.plane_x = g->player.plane_x * cos(-frame_rot) - g->player.plane_y
-		* sin(-frame_rot);
-	g->player.plane_y = old_plane_x * sin(-frame_rot) + g->player.plane_y
-		* cos(-frame_rot);
+	g->player.plane_x = g->player.plane_x * cos(angle)
+		- g->player.plane_y * sin(angle);
+	g->player.plane_y = old_plane_x * sin(angle)
+		+ g->player.plane_y * cos(angle);
 }

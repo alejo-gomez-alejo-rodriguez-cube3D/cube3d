@@ -23,9 +23,9 @@ void	handle_input(t_game *g)
 	if (g->input.strafe_right)
 		strafe_right(g);
 	if (g->input.rotate_left)
-		rotate_left(g);
+		rotate_by_angle(g, g->rot_speed * g->delta_time);
 	if (g->input.rotate_right)
-		rotate_right(g);
+		rotate_by_angle(g, -g->rot_speed * g->delta_time);
 }
 
 int	key_release(int keycode, t_game *g)
@@ -60,13 +60,13 @@ int	key_press(int keycode, t_game *g)
 	else if (keycode == RIGHT)
 		g->input.rotate_right = 1;
 	else if (keycode == KEY_ESC)
-		destroy_game(g);
+		free_game(g);
 	return (0);
 }
 
 int	close_window(t_game *g)
 {
-	destroy_game(g);
+	free_game(g);
 	return (0);
 }
 

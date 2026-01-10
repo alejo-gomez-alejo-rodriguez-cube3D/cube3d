@@ -28,4 +28,11 @@
 
 void	draw_minimap(t_game *game);
 
+// hooks_bonus
+void	set_hook_bonus(t_game *game);
+int		mouse_move(int x, int y, t_game *g);
+
+// iniciador aparte
+int		init_game_bonus(t_game *g);
+
 #endif

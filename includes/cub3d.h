@@ -21,8 +21,6 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
-# include "parser.h"
-# include "render.h"
 
 # define KEY_W 119
 # define KEY_D 97
@@ -37,6 +35,7 @@
 # define MIN_WALL_DIST 0.1
 # define MOVE_SPEED_BASE 4.5
 # define ROT_SPEED_BASE 2.5
+# define MOUSE_SENS 2
 // struct raycasting
 
 typedef struct s_ray
@@ -177,6 +176,11 @@ typedef struct s_game
 	double rot_speed;  // velocidad de rotacion (rad/sec)
 
 	int runnig; // flag para el loop 1 = running 0 = salir
+	int	mlx_initialized; //flag para saber si se incio mlx
+	int	bonus_enabled; //flag para controlar bonus
+
+	int	mouse_initialized; // es para evitar un salto bruzco al iniciar
+	int	mouse_x; //ultima posición del mouse
 }			t_game;
 
 // time_game
@@ -184,9 +188,12 @@ double		get_time_ms(void);
 void		get_delta_time(t_game *g);
 
 // free mem
-int			destroy_game(t_game *g);
+void		destroy_game(t_game *g);
 void		free_map_array(t_game *game);
 void		free_textures(t_game *game);
 
+# include "parser.h"
+# include "render.h"
+# include "../bonus/bonus.h"
 
 #endif
