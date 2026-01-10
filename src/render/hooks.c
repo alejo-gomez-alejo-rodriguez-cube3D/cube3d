@@ -42,6 +42,8 @@ int	key_release(int keycode, t_game *g)
 		g->input.rotate_left = 0;
 	else if (keycode == RIGHT)
 		g->input.rotate_right = 0;
+	else if (keycode == KEY_E)
+		g->press_e = 0;
 	return (0);
 }
 
@@ -59,6 +61,11 @@ int	key_press(int keycode, t_game *g)
 		g->input.rotate_left = 1;
 	else if (keycode == RIGHT)
 		g->input.rotate_right = 1;
+	else if (keycode == KEY_E && g->press_e == 0)
+	{
+		toggle_door(g);
+		g->press_e = 1;
+	}
 	else if (keycode == KEY_ESC)
 		free_game(g);
 	return (0);
