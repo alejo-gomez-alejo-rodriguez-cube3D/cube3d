@@ -52,6 +52,7 @@ int	init_game(t_game *g)
 	init_constants(g);
 	if (init_mlx(g))
 		return (1);
+	g->mlx_initialized = 1;
 	if (load_all_textures(g))
 		return (1);
 	return (0);
