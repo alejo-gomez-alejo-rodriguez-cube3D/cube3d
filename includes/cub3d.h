@@ -28,6 +28,7 @@
 # define KEY_A 100
 # define RIGHT 65361
 # define KEY_ESC 65307
+# define KEY_E 101
 # define LEFT 65363
 # define ENTER 65293
 
@@ -71,6 +72,14 @@ typedef struct s_ray
 	int		tex_x;
 	int		tex_y;
 }			t_ray;
+
+// puertas
+typedef struct s_door
+{
+	int	x;
+	int	y;
+	int open; //0 puerta cerrada, 1 abierta
+}				t_door;
 
 // imagen en el MLX
 typedef struct s_img
@@ -181,6 +190,10 @@ typedef struct s_game
 
 	int	mouse_initialized; // es para evitar un salto bruzco al iniciar
 	int	mouse_x; //ultima posición del mouse
+	int	press_e;
+
+	t_door	*doors;
+	int	count_doors;
 }			t_game;
 
 // time_game

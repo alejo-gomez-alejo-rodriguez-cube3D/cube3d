@@ -12,11 +12,13 @@
 
 #include "../../includes/cub3d.h"
 
-static int	is_valid_char(char c)
+static int	is_valid_char(t_game *g, char c)
 {
 	if (c == '0' || c == '1' || c == ' ')
 		return (1);
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (1);
+	if (c == 'D' && g->bonus_enabled)
 		return (1);
 	return (0);
 }
@@ -40,7 +42,7 @@ static int	check_map_chars(t_game *game)
 		j = 0;
 		while (game->map.map[i][j])
 		{
-			if (!is_valid_char(game->map.map[i][j]))
+			if (!is_valid_char(game, game->map.map[i][j]))
 				return (print_error("Invalid character"));
 			j++;
 		}
@@ -69,6 +71,8 @@ static int	check_player_count(t_game *game)
 				count++;
 				save_player_pos(game, j, i);
 			}
+			else if (c == 'D')
+				save_door(game, j, i);
 		}
 	}
 	if (count != 1)

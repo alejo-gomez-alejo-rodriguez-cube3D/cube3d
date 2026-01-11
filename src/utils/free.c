@@ -14,6 +14,7 @@
 
 int	free_game(t_game *game)
 {
+	free_doors(game);
 	free_textures(game);
 	free_map_array(game);
 	destroy_game(game);

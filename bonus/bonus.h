@@ -35,4 +35,12 @@ int		mouse_move(int x, int y, t_game *g);
 // iniciador aparte
 int		init_game_bonus(t_game *g);
 
+// parser bonus
+void	save_door(t_game *g, int x, int y);
+void	free_doors(t_game *game);
+int		is_door_close(t_game *g, int x, int y);
+void	toggle_door(t_game *g);
+void	door_toggle_state(t_game *g, int index);
+int		find_door(t_game *g, int x, int y);
+
 #endif

@@ -29,6 +29,48 @@ int	game_loop_bonus(t_game *game)
 	return (0);
 }
 
+int	count_doors(char **map)
+{
+	int	i;
+	int	j;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'D')
+				count++;
+			j++;
+		}
+		i++;
+	}
+	return (count);
+}
+
+void	init_doors(t_game *game)
+{
+	int	count;
+
+	count = count_doors(game->map.map);
+	game->count_doors = count;
+	if (count == 0)
+	{
+		game->count_doors = 0;
+		return ;
+	}
+	game->doors = malloc(sizeof(t_door) * count);
+	if (!game->doors)
+	{
+		print_error("Malloc falied for doors");
+		exit (1);
+	}
+	game->count_doors = 0;
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -41,6 +83,7 @@ int	main(int argc, char **argv)
 	game.bonus_enabled = 1;
 	if (parse_file(argv[1], &game) != 0)
 		return (free_game(&game), 1);
+	init_doors(&game);
 	if (validate_map(&game) != 0)
 		return (free_game(&game), 1);
 	init_player(&game.player);
