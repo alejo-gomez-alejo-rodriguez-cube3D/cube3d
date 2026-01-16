@@ -6,12 +6,15 @@
 /*   By: alejaro2 <alejaro2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 19:04:36 by alejandro         #+#    #+#             */
-/*   Updated: 2026/01/08 15:51:23 by alejaro2         ###   ########.fr       */
+/*   Updated: 2026/01/16 21:45:29 by alejaro2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
+
+typedef struct s_game	t_game;
+typedef struct s_tex	t_tex;
 
 int		parse_file(char *file_path, t_game *game);
 char	*skip_spaces(char *line);
