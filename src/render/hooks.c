@@ -55,7 +55,7 @@ int	key_press(int keycode, t_game *g)
 		g->input.backward = 1;
 	else if (keycode == KEY_D)
 		g->input.strafe_right = 1;
-	else if (keycode == KEY_A)	
+	else if (keycode == KEY_A)
 		g->input.strafe_left = 1;
 	else if (keycode == LEFT)
 		g->input.rotate_left = 1;

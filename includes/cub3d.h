@@ -63,9 +63,9 @@ typedef struct s_ray
 	int			step_x;
 	int			step_y;
 
-	int		hit;
-	int		side;
-	int		hit_door;
+	int			hit;
+	int			side;
+	int			hit_door;
 
 	double		perp_wall_dist;
 
