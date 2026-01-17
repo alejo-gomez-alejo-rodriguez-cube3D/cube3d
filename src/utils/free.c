@@ -6,7 +6,7 @@
 /*   By: alejaro2 <alejaro2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 18:12:15 by alejandro         #+#    #+#             */
-/*   Updated: 2026/01/08 15:41:14 by alejaro2         ###   ########.fr       */
+/*   Updated: 2026/01/15 11:32:31 by alejaro2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ int	free_game(t_game *game)
 	free_textures(game);
 	free_map_array(game);
 	destroy_game(game);
-	// if (game->mlx)
-	// {
-	// 	mlx_destroy_display(game->mlx); // Solo en Linux
-	// 	free(game->mlx);
-	// }
+	if (game->img_mlx)
+	{
+		mlx_destroy_display(game->img_mlx);
+		free(game->img_mlx);
+	}
+	exit(0);
 	return (0);
 }
 
@@ -74,6 +75,5 @@ void	destroy_game(t_game *g)
 			mlx_destroy_image(g->img_mlx, g->config.tex_west.img_mlx);
 		if (g->window)
 			mlx_destroy_window(g->img_mlx, g->window);
-		exit (0);
 	}
 }

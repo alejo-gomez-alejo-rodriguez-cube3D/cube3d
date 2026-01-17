@@ -6,7 +6,7 @@
 /*   By: alejaro2 <alejaro2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 14:47:26 by alejaro2          #+#    #+#             */
-/*   Updated: 2026/01/08 14:47:30 by alejaro2         ###   ########.fr       */
+/*   Updated: 2026/01/16 21:42:48 by alejaro2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define C_MM_PLAYER 0xFF0000
 # define C_MM_FRAME 0xFFFFFF
 
+typedef struct s_game	t_game;
+
 void	draw_minimap(t_game *game);
 
 // hooks_bonus
@@ -42,5 +44,6 @@ int		is_door_close(t_game *g, int x, int y);
 void	toggle_door(t_game *g);
 void	door_toggle_state(t_game *g, int index);
 int		find_door(t_game *g, int x, int y);
+void	free_doors(t_game *game);
 
 #endif
