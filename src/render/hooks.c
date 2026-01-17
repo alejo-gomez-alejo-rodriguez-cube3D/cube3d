@@ -18,10 +18,10 @@ void	handle_input(t_game *g)
 		move_forward(g);
 	if (g->input.backward)
 		move_backward(g);
-	if (g->input.strafe_left)
-		strafe_left(g);
 	if (g->input.strafe_right)
 		strafe_right(g);
+	if (g->input.strafe_left)
+		strafe_left(g);
 	if (g->input.rotate_left)
 		rotate_by_angle(g, g->rot_speed * g->delta_time);
 	if (g->input.rotate_right)
@@ -34,10 +34,10 @@ int	key_release(int keycode, t_game *g)
 		g->input.forward = 0;
 	else if (keycode == KEY_S)
 		g->input.backward = 0;
-	else if (keycode == KEY_A)
-		g->input.strafe_left = 0;
 	else if (keycode == KEY_D)
 		g->input.strafe_right = 0;
+	else if (keycode == KEY_A)
+		g->input.strafe_left = 0;
 	else if (keycode == LEFT)
 		g->input.rotate_left = 0;
 	else if (keycode == RIGHT)
@@ -53,10 +53,10 @@ int	key_press(int keycode, t_game *g)
 		g->input.forward = 1;
 	else if (keycode == KEY_S)
 		g->input.backward = 1;
-	else if (keycode == KEY_A)
-		g->input.strafe_left = 1;
 	else if (keycode == KEY_D)
 		g->input.strafe_right = 1;
+	else if (keycode == KEY_A)	
+		g->input.strafe_left = 1;
 	else if (keycode == LEFT)
 		g->input.rotate_left = 1;
 	else if (keycode == RIGHT)

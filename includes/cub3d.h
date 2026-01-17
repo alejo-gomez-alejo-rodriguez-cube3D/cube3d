@@ -26,9 +26,9 @@
 # include "render.h"
 
 # define KEY_W 119
-# define KEY_D 97
+# define KEY_A 97
 # define KEY_S 115
-# define KEY_A 100
+# define KEY_D 100
 # define RIGHT 65361
 # define KEY_ESC 65307
 # define KEY_E 101
@@ -135,8 +135,8 @@ typedef struct s_input
 {
 	int			forward;
 	int			backward;
-	int			strafe_left;
 	int			strafe_right;
+	int			strafe_left;
 	int			rotate_left;
 	int			rotate_right;
 }				t_input;
