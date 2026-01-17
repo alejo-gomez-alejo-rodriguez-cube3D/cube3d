@@ -2,6 +2,7 @@ NO ./textures/fondo.xpm
 SO ./textures/fondo.xpm
 WE ./textures/fondo.xpm
 EA ./textures/fondo.xpm
+DO ./textures/door.xpm
 
 F 0,255,0
 C 0,0,255

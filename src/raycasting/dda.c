@@ -63,9 +63,16 @@ void	dda_loop(t_game *g, t_ray *r)
 			r->side = 1;
 		}
 		cell = g->map.map[r->map_y][r->map_x];
-		if (cell == '1' || (cell == 'D'
-				&& is_door_close(g, r->map_x, r->map_y)))
+		if (cell == '1')
+		{
 			r->hit = 1;
+			r->hit_door = 0;
+		}
+		else if (cell == 'D' && is_door_close(g, r->map_x, r->map_y))
+		{
+			r->hit = 1;
+			r->hit_door = '1';
+		}
 	}
 }
 

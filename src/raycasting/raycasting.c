@@ -26,6 +26,8 @@ void	init_ray(t_game *g, t_ray *r, int x)
 
 t_tex	*select_wall_texture(t_game *g, t_ray *r)
 {
+	if (r->hit_door && g->bonus_enabled)
+		return (&g->config.tex_door);
 	if (r->side == 0)
 	{
 		if (r->ray_dir_x > 0)

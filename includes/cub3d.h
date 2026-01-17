@@ -62,6 +62,7 @@ typedef struct s_ray
 
 	int		hit;
 	int		side;
+	int		hit_door;
 
 	double	perp_wall_dist;
 

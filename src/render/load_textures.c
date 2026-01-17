@@ -35,5 +35,7 @@ int	load_all_textures(t_game *g)
 		return (1);
 	if (load_texture(g, &g->config.tex_west))
 		return (1);
+	if (load_texture(g, &g->config.tex_door) && g->bonus_enabled)
+		return (1);
 	return (0);
 }
