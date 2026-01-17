@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alejandro <marvin@42.fr>                   +#+  +:+       +#+        */
+/*   By: alejaro2 <alejaro2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 19:04:00 by alejandro         #+#    #+#             */
-/*   Updated: 2025/12/17 19:04:03 by alejandro        ###   ########.fr       */
+/*   Updated: 2026/01/16 21:41:24 by alejaro2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include "cub3d.h"
 
 typedef struct s_game	t_game;
+typedef struct s_ray	t_ray;
+typedef struct s_tex	t_tex;
+typedef struct s_img	t_img;
+typedef struct s_player	t_player;
 
 // raycasting
 void					raycast_scene(t_game *g);
@@ -61,7 +65,7 @@ void					put_pixel(t_img *img, int x, int y, int color);
 unsigned int			get_tex_pixel(t_tex *tx, int x, int y);
 
 // buttons
-int	is_blocked(t_game *g, int x, int y);
+int						is_blocked(t_game *g, int x, int y);
 void					handle_input(t_game *g);
 int						key_press(int key, t_game *g);
 int						key_release(int keycode, t_game *g);

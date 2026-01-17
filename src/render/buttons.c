@@ -21,11 +21,11 @@ void	move_backward(t_game *g)
 	frame_move = g->move_speed * g->delta_time;
 	new_x = g->player.x - g->player.dir_x * frame_move;
 	new_y = g->player.y - g->player.dir_y * frame_move;
-	if (g->map.map[(int)g->player.y][(int)(new_x - g->player.dir_x
-		* WALL_MARGIN)] != '1')
+	if (!is_blocked(g, (int)(new_x - g->player.dir_x * WALL_MARGIN),
+		(int)(g->player.y)))
 		g->player.x = new_x;
-	if (g->map.map[(int)(new_y - g->player.dir_y
-			* WALL_MARGIN)][(int)g->player.x] != '1')
+	if (!is_blocked(g, (int)(g->player.x), (int)(new_y - g->player.dir_y
+		* WALL_MARGIN)))
 		g->player.y = new_y;
 }
 
@@ -63,7 +63,7 @@ void	move_forward(t_game *g)
 		g->player.y = new_y;
 }
 
-void	strafe_left(t_game *g)
+void	strafe_right(t_game *g)
 {
 	double	frame_move;
 	double	new_x;
@@ -72,15 +72,15 @@ void	strafe_left(t_game *g)
 	frame_move = g->move_speed * g->delta_time;
 	new_x = g->player.x - g->player.dir_y * frame_move;
 	new_y = g->player.y + g->player.dir_x * frame_move;
-	if (g->map.map[(int)g->player.y][(int)(new_x - g->player.dir_y
-		* WALL_MARGIN)] != '1')
+	if (!is_blocked(g, (int)(new_x - g->player.dir_y * WALL_MARGIN),
+		(int)(g->player.y)))
 		g->player.x = new_x;
-	if (g->map.map[(int)(new_y + g->player.dir_x
-			* WALL_MARGIN)][(int)g->player.x] != '1')
+	if (!is_blocked(g, (int)(g->player.x), (int)(new_y + g->player.dir_x
+		* WALL_MARGIN)))
 		g->player.y = new_y;
 }
 
-void	strafe_right(t_game *g)
+void	strafe_left(t_game *g)
 {
 	double	frame_move;
 	double	new_x;
@@ -89,10 +89,10 @@ void	strafe_right(t_game *g)
 	frame_move = g->move_speed * g->delta_time;
 	new_x = g->player.x + g->player.dir_y * frame_move;
 	new_y = g->player.y - g->player.dir_x * frame_move;
-	if (g->map.map[(int)g->player.y][(int)(new_x + g->player.dir_y
-		* WALL_MARGIN)] != '1')
+	if (!is_blocked(g, (int)(new_x + g->player.dir_y * WALL_MARGIN),
+		(int)(g->player.y)))
 		g->player.x = new_x;
-	if (g->map.map[(int)(new_y - g->player.dir_x
-			* WALL_MARGIN)][(int)g->player.x] != '1')
+	if (!is_blocked(g, (int)(g->player.x), (int)(new_y - g->player.dir_x
+		* WALL_MARGIN)))
 		g->player.y = new_y;
 }

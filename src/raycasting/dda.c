@@ -12,7 +12,6 @@
 
 #include "./includes/cub3d.h"
 
-// Initializes DDA step and initial side distance for the X axis.
 void	init_dda_x(t_game *g, t_ray *r)
 {
 	if (r->ray_dir_x < 0)
@@ -27,7 +26,6 @@ void	init_dda_x(t_game *g, t_ray *r)
 	}
 }
 
-// Initializes DDA step and initial side distance for the Y axis.
 void	init_dda_y(t_game *g, t_ray *r)
 {
 	if (r->ray_dir_y < 0)
@@ -42,34 +40,38 @@ void	init_dda_y(t_game *g, t_ray *r)
 	}
 }
 
-// Advances the ray through the map grid until a wall is hit.
-// Chooses the next grid cell based on the closest side distance.
-void	dda_loop(t_game *g, t_ray *r)
-{
-	char	cell;
+// void	dda_loop(t_game *g, t_ray *r)
+// {
+// 	char	cell;
 
-	while (r->hit == 0)
-	{
-		if (r->side_dist_x < r->side_dist_y)
-		{
-			r->side_dist_x += r->delta_dist_x;
-			r->map_x += r->step_x;
-			r->side = 0;
-		}
-		else
-		{
-			r->side_dist_y += r->delta_dist_y;
-			r->map_y += r->step_y;
-			r->side = 1;
-		}
-		cell = g->map.map[r->map_y][r->map_x];
-		if (cell == '1' || (cell == 'D'
-				&& is_door_close(g, r->map_x, r->map_y)))
-			r->hit = 1;
-	}
-}
+// 	while (r->hit == 0)
+// 	{
+// 		if (r->side_dist_x < r->side_dist_y)
+// 		{
+// 			r->side_dist_x += r->delta_dist_x;
+// 			r->map_x += r->step_x;
+// 			r->side = 0;
+// 		}
+// 		else
+// 		{
+// 			r->side_dist_y += r->delta_dist_y;
+// 			r->map_y += r->step_y;
+// 			r->side = 1;
+// 		}
+// 		cell = g->map.map[r->map_y][r->map_x];
+// 		if (cell == '1')
+// 		{
+// 			r->hit = 1;
+// 			r->hit_door = 0;
+// 		}
+// 		else if (cell == 'D' && is_door_close(g, r->map_x, r->map_y))
+// 		{
+// 			r->hit = 1;
+// 			r->hit_door = '1';
+// 		}
+// 	}
+// }
 
-// Prepares and executes the DDA algorithm to detect wall collision.
 void	perform_dda(t_game *g, t_ray *r)
 {
 	init_dda_x(g, r);
