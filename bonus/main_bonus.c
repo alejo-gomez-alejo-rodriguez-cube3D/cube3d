@@ -88,7 +88,7 @@ int	main(int argc, char **argv)
 		return (free_game(&game), 1);
 	init_player(&game.player);
 	if (init_game_bonus(&game))
-		return (1);
+		return (free_game(&game), 1);
 	set_hook_bonus(&game);
 	game.runnig = 1;
 	game.last_time = get_time_ms();
