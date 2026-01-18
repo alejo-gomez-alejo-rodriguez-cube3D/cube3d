@@ -40,7 +40,12 @@ void	compute_perp_dist(t_game *g, t_ray *r)
 
 void	compute_line_height(t_game *g, t_ray *r)
 {
-	r->line_height = (int)(g->win_h / r->perp_wall_dist);
+	double	effective_dist;
+
+	effective_dist = r->perp_wall_dist / WALL_SCALE;
+	if (effective_dist < 0.0001)
+		effective_dist = 0.0001;
+	r->line_height = (int)(g->win_h / effective_dist);
 }
 
 void	compute_draw_limits(t_game *g, t_ray *r)
