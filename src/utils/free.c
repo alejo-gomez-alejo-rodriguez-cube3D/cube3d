@@ -73,6 +73,8 @@ void	destroy_game(t_game *g)
 			mlx_destroy_image(g->img_mlx, g->config.tex_east.img_mlx);
 		if (g->config.tex_west.img_mlx)
 			mlx_destroy_image(g->img_mlx, g->config.tex_west.img_mlx);
+		if (g->config.tex_door.img_mlx)
+			mlx_destroy_image(g->img_mlx, g->config.tex_door.img_mlx);
 		if (g->window)
 			mlx_destroy_window(g->img_mlx, g->window);
 	}
