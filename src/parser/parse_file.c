@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alejandro <marvin@42.fr>                   +#+  +:+       +#+        */
+/*   By: alejaro2 <alejaro2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 18:03:19 by alejandro         #+#    #+#             */
-/*   Updated: 2025/12/27 18:03:20 by alejandro        ###   ########.fr       */
+/*   Updated: 2026/01/18 14:51:34 by alejaro2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,10 @@ int	parse_file(char *file_path, t_game *game)
 		error = parse_line(line, game);
 		free(line);
 		if (error != 0)
+		{
+			get_next_line(-1);
 			break ;
+		}
 		line = get_next_line(fd);
 	}
 	close(fd);

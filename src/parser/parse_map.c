@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alejandro <marvin@42.fr>                   +#+  +:+       +#+        */
+/*   By: alejaro2 <alejaro2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 18:00:49 by alejandro         #+#    #+#             */
-/*   Updated: 2025/12/27 18:00:52 by alejandro        ###   ########.fr       */
+/*   Updated: 2026/01/18 14:56:09 by alejaro2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ static int	check_textures_loaded(t_game *game)
 		|| !game->config.tex_west.path || !game->config.tex_east.path
 		|| !game->config.is_floor_set || !game->config.is_ceil_set)
 		return (0);
+	if (game->bonus_enabled)
+	{
+		if (!game->config.tex_door.path)
+			return (0);
+	}
 	return (1);
 }
 
