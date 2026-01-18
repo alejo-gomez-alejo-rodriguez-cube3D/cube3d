@@ -35,6 +35,7 @@
 # define LEFT 65363
 # define ENTER 65293
 
+# define WALL_SCALE 1.2
 # define WALL_MARGIN 0.2
 # define MIN_WALL_DIST 0.1
 # define MOVE_SPEED_BASE 4.5
