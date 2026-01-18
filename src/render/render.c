@@ -49,6 +49,7 @@ int	init_mlx(t_game *game)
 
 int	init_game(t_game *g)
 {
+	printf("gonorrea \n");
 	init_constants(g);
 	if (init_mlx(g))
 		return (1);
